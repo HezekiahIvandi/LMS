@@ -126,10 +126,15 @@ nav .navigation ul li a:hover {
 }
 
 /* Courses */
+#course .btn {
+    margin-top: 10px;
+}
+
 #course {
     padding: 60px 20px;
     background-color: #f9f9f9;
     text-align: center;
+    position: relative;
 }
 
 #course h1 {
@@ -195,21 +200,6 @@ nav .navigation ul li a:hover {
     margin-bottom: 10px;
 }
 
-.details .btn a {
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px 20px;
-    color: white;
-    background-color: #006699;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-}
-
-.details .btn a:hover {
-    background-color: #004466;
-}
-
 .details h4 {
     font-size: 14px;
     font-weight: 600;
@@ -218,7 +208,105 @@ nav .navigation ul li a:hover {
     text-align: center;
 }
 
+/* Pop Up */
+.add-btn {
+    color: white;
+    font-size: 16px;
+    background-color: #006699;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    max-width: 500px;
+}
+
+.popup-content h2 {
+    padding-bottom: 20px;
+}
+
+.popup-content label {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+#course-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#course-form input, #course-form button {
+    margin-bottom: 25px;
+}
+
+#course-form input[type="text"], #course-form input[type="url"], #course-form button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#course-form button {
+    background-color: #006699;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#course-form button:hover {
+    background-color: #004466;
+}
+
+#course-form input:focus, #course-form button:focus {
+    outline: none;
+    border-color: #006699;
+    box-shadow: 0 0 5px rgba(0, 102, 153, 0.5);
+}
+
 /* Course */
+#course a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
 #course {
     text-align: center;
     padding-top: 60px;
@@ -232,9 +320,14 @@ nav .navigation ul li a:hover {
     font-weight: 800;
 }
 
+#course h4 {
+    margin-top: -20px;
+}
+
 #course p {
     font-size: 14px;
     font-weight: 600;
+    margin-bottom: 40px;
 }
 
 #course .course-box {
@@ -242,6 +335,11 @@ nav .navigation ul li a:hover {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-gap: 10px;
     margin-top: 50px;
+
+}
+
+#course .courses {
+    padding-bottom: 20px;
 }
 
 #course .course {
@@ -268,4 +366,28 @@ nav .navigation ul li a:hover {
     text-align: left;
     font-size: 16px;
     margin-bottom: 10px;
+}
+
+#course a.edit-course-btn {
+    color: white;
+    background: #006699;
+    transition: 0.2s ease;
+    margin-right: 10px;
+}
+
+#course a.edit-course-btn:hover {
+    color: white;
+    background: #0c374d;
+}
+
+#course .delete-course-btn {
+    color: white;
+    background: #339966;
+    transition: 0.2s ease;
+    margin-left: -5px;
+}
+
+#course .delete-course-btn:hover {
+    color: white;
+    background: #115734;
 }
