@@ -52,7 +52,7 @@
             <p>WikiLatih Daring adalah program pelatihan penyuntingan di Wikipedia yang diadakan secara daring.</p>
             <div class="course-box">
                 <div class="courses">
-                    <img src="storage/Kursus WikiLatih.png" alt="Ikon WikiLatih">
+                    <img src="storage/Kursus WikiLatih.png" alt="">
                     <div class="details">
                         <h4>WikiLatih Daring #16</h4>
                         <p>Pelatih: Dian Agustin</p>
@@ -97,6 +97,44 @@
                     </div>
                 </div>  
             </div>
+        </section>
+
+        <!-- Article -->
+        <section id="article" class="py-16 grid grid-cols-1">
+            <h1 class="text-center text-[20px] font-extrabold mb-6 text-white">Artikel Terbaru</h1>
+            <div id="article-collection">
+                <div id="article-card" class="bg-white flex w-4/5 md:w-3/5 lg:w-2/5 m-auto rounded-2xl p-6 my-8 shadow-md">
+                    <img src="assets\Wikimedia.svg" class="w-40 h-40 rounded-2xl">
+                    <div class="grid grid-cols-1 ml-8 h-40 place-content-between">
+                        <div>
+                            <p class="text-[18px] font-bold">Judul Artikel 1</p>
+                            <p class="text-[16px] font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <p class="text-right text-[16px] font-normal">6 Juni 2024</p>
+                    </div>
+                </div>
+                <div id="article-card" class="bg-white flex w-4/5 md:w-3/5 lg:w-2/5 m-auto rounded-2xl p-6 my-8 shadow-md">
+                    <img src="assets\Wikimedia.svg" class="w-40 h-40 rounded-2xl">
+                    <div class="grid grid-cols-1 ml-8 h-40 place-content-between">
+                        <div>
+                            <p class="text-[18px] font-bold">Judul Artikel 2</p>
+                            <p class="text-[16px] font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <p class="text-right text-[16px] font-normal">5 Juni 2024</p>
+                    </div>
+                </div>
+                <div id="article-card" class="bg-white flex w-4/5 md:w-3/5 lg:w-2/5 m-auto rounded-2xl p-6 my-8 shadow-md">
+                    <img src="assets\Wikimedia.svg" class="w-40 h-40 rounded-2xl">
+                    <div class="grid grid-cols-1 ml-8 h-40 place-content-between">
+                        <div>
+                            <p class="text-[18px] font-bold">Judul Artikel 3</p>
+                            <p class="text-[16px] font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <p class="text-right text-[16px] font-normal">4 Juni 2024</p>
+                    </div>
+                </div>
+            </div>
+            <a class="place-self-center" href="#"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
         </section>
     </body>
 </html>
