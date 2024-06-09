@@ -11,7 +11,7 @@
     <body>
         <!-- Navigation -->
         <nav>
-            <img src="assets/Ikon WikiLatih.png" alt="Ikon WikiLatih">
+            <img src="assets\Ikon WikiLatih.png" alt="Ikon WikiLatih">
             <div class="navigation">
                 <ul>
                     <li><a href="/">Beranda</a></li>
@@ -21,6 +21,12 @@
                 </ul>
             </div>
         </nav>
+
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
 
         <!-- Home -->
         <section id="home">
@@ -32,7 +38,7 @@
             </div>
         </section>
 
-        <!-- Courses -->
+        <!-- Course -->
         <section id="course">
             <h1>Kursus yang Tersedia <span><button class="add-btn">+</button></span></h1>
             <!-- Pop Up -->
@@ -40,62 +46,49 @@
                 <div class="popup-content">
                     <span class="close-btn">&times;</span>
                     <h2>Menambahkan Kursus Baru</h2>
-                    <form id="course-form">
-                        <input type="text" id="course-name" placeholder="Nama Kursus" required>
-                        <label for="course-img">Gambar Kursus:</label>
-                        <input type="file" name="course-img" id="course-img" accept="image/*" required>
-                        <input type="text" id="trainer-name" placeholder="Nama Pelatih">
-                        <button type="submit">Simpan</button>
-                    </form>
+                    <form id="course-form" action="{{ route('kursus.store') }}" method="POST">
+                    @csrf
+                    <input type="text" id="course-name" name="name" placeholder="Nama Kursus" required>
+                    <label for="course-img">Gambar Kursus:</label>
+                    <div class="image-options">
+                        <input type="radio" id="kursus-wikilatih" name="image_url" value="assets/Kursus WikiLatih.png" required>
+                        <label for="kursus-wikilatih">
+                            <img src="assets/Kursus WikiLatih.png" alt="Kursus WikiLatih">
+                        </label>
+                        <input type="radio" id="kursus-wikisosial" name="image_url" value="assets/Kursus WikiSosial.png" required>
+                        <label for="kursus-wikisosial">
+                            <img src="assets/Kursus WikiSosial.png" alt="Kursus WikiSosial">
+                        </label>
+                        <input type="radio" id="magang-wmid" name="image_url" value="assets/Magang WMID.png" required>
+                        <label for="magang-wmid">
+                            <img src="assets/Magang WMID.png" alt="Magang WMID">
+                        </label>
+                        <input type="radio" id="hibah-wmid" name="image_url" value="assets/Hibah WMID.png" required>
+                        <label for="hibah-wmid">
+                            <img src="assets/Hibah WMID.png" alt="Hibah WMID">
+                        </label>
+                    </div>
+                    <input type="text" id="trainer-name" name="trainer" placeholder="Nama Pelatih">
+                    <button type="submit">Simpan</button>
+                </form>
                 </div>
             </div>
+
             <p>WikiLatih Daring adalah program pelatihan penyuntingan di Wikipedia yang diadakan secara daring.</p>
             <div class="course-box">
-                <div class="courses">
-                    <img src="assets/Kursus WikiLatih.png" alt="">
-                    <div class="details">
-                        <h4>WikiLatih Daring #16</h4>
-                        <p>Pelatih: Dian Agustin</p>
+                @foreach($kursus as $crs)
+                    <div class="courses">
+                        <img src="{{ asset($crs->image_url) }}" alt="">
+                        <div class="details">
+                            <h4>{{ $crs->name }}</h4>
+                            <p>Pelatih: {{ $crs->trainer }}</p>
+                        </div>
+                        <div class="btn">
+                            <a class="edit-course-btn" href="#">Edit Kursus</a>
+                            <a class="delete-course-btn" href="#">Hapus Kursus</a>
+                        </div>
                     </div>
-                    <div class="btn">
-                        <a class="edit-course-btn" href="#">Edit Kursus</a>
-                        <a class="delete-course-btn" href="#">Hapus Kursus</a>
-                    </div>
-                </div>  
-
-                <div class="courses">
-                    <img src="assets/Kursus WikiSosial.png" alt="">
-                    <div class="details">
-                        <h4>WikiSosial Daring #20</h4>
-                        <p>Pelatih: Ayu Sulastri</p>
-                    </div>
-                    <div class="btn">
-                        <a class="edit-course-btn" href="#">Edit Kursus</a>
-                        <a class="delete-course-btn" href="#">Hapus Kursus</a>
-                    </div>
-                </div>  
-                <div class="courses">
-                    <img src="assets/Magang WMID.png" alt="">
-                    <div class="details">
-                        <h4>Magang Wkimedia Indonesia</h4>
-                        <p>Koordinator: Raisha Abdillah</p>
-                    </div>
-                    <div class="btn">
-                        <a class="edit-course-btn" href="#">Edit Kursus</a>
-                        <a class="delete-course-btn" href="#">Hapus Kursus</a>
-                    </div>
-                </div>  
-                <div class="courses">
-                    <img src="assets/Hibah WMID.png" alt="">
-                    <div class="details">
-                        <h4>Hibah Wikimedia Indonesia</h4>
-                        <p>Koordinator: Nabial Chiekal Gibran</p>
-                    </div>
-                    <div class="btn">
-                        <a class="edit-course-btn" href="#">Edit Kursus</a>
-                        <a class="delete-course-btn" href="#">Hapus Kursus</a>
-                    </div>
-                </div>  
+                @endforeach
             </div>
         </section>
 
