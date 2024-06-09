@@ -128,7 +128,7 @@ nav .navigation ul li a:hover {
     background: white;
 }
 
-/* Courses */
+/* Course */
 #course .btn {
     margin-top: 10px;
 }
@@ -252,11 +252,40 @@ nav .navigation ul li a:hover {
 
 .popup-content h2 {
     padding-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .popup-content label {
     text-align: left;
     padding-bottom: 10px;
+}
+
+.image-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-options label {
+    display: block;
+    cursor: pointer;
+}
+
+.image-options img {
+    width: 100px;
+    height: auto;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+}
+
+.image-options input[type="radio"] {
+    display: none;
+}
+
+.image-options input[type="radio"]:checked + label img {
+    border: 2px solid #007BFF;
 }
 
 .close-btn {

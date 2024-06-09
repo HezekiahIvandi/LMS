@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\authController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KursusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route to display the homepage (kursus page)
+Route::get('/', [KursusController::class, 'index'])->name('home');
+Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
 
-//login page
-Route::get('/login', [authController::class,'login'])->name('login');
+// Login page route
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+
+// Route to store course data
+Route::post('/kursus', [KursusController::class, 'store'])->name('kursus.store');
