@@ -331,14 +331,6 @@ nav .navigation ul li a:hover {
 }
 
 /* Course */
-#course a {
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 10px 15px;
-    border-radius: 4px;
-}
-
 #course {
     text-align: center;
     padding-top: 60px;
@@ -400,27 +392,41 @@ nav .navigation ul li a:hover {
     margin-bottom: 10px;
 }
 
-#course a.edit-course-btn {
+.btn-container {
+    display: flex;
+    gap: 20px;
+}
+
+.edit-course-btn {
+    display: flex;
     color: white;
     background: #006699;
     transition: 0.2s ease;
-    margin-right: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin-left: 25px;
 }
 
-#course a.edit-course-btn:hover {
-    color: white;
+.edit-course-btn:hover {
     background: #0c374d;
 }
 
-#course .delete-course-btn {
+.delete-course-btn {
     color: white;
     background: #339966;
     transition: 0.2s ease;
-    margin-left: -5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-radius: 4px;
+
 }
 
-#course .delete-course-btn:hover {
-    color: white;
+.delete-course-btn:hover {
     background: #115734;
 }
 

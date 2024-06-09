@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     courseForm.addEventListener('submit', function(event) {
-        event.preventDefault();
         const courseName = document.getElementById('course-name').value;
         const courseImage = document.querySelector('input[name="image_url"]:checked').value;
         const trainerName = document.getElementById('trainer-name').value;
