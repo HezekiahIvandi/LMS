@@ -21,6 +21,10 @@ Route::get('/', [KursusController::class, 'index'])->name('home');
 // Login page route
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
+Route::get('/article', function () {
+    return view('article');
+});
+
 Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
 Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.store');
 Route::put('/kursus/edit/{id}', [KursusController::class, 'edit'])->name('kursus.edit');

@@ -16,9 +16,9 @@
             <img src="assets\Ikon WikiLatih.png" alt="Ikon WikiLatih">
             <div class="navigation">
                 <ul>
-                    <li><a href="#">Beranda</a></li>
+                    <li><a href="/">Beranda</a></li>
                     <li><a href="#">Kursus</a></li>
-                    <li><a href="#">Artikel</a></li>
+                    <li><a href="/article">Artikel</a></li>
                     <li><a href="#">Tentang Kami</a></li>
                 </ul>
             </div>
@@ -139,7 +139,7 @@
                     </div>
                 </div>
             </div>
-            <a class="place-self-center" href="#"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
+            <a class="place-self-center" href="/article"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
         </section>
     </body>
 </html>
