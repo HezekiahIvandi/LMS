@@ -18,5 +18,9 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/article', function () {
+    return view('article');
+});
+
 //login page
 Route::get('/login', [authController::class,'login'])->name('login');

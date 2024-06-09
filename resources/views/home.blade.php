@@ -11,12 +11,12 @@
     <body>
         <!-- Navigation -->
         <nav>
-            <img src="storage/Ikon WikiLatih.png" alt="Ikon WikiLatih">
+            <img src="assets/Ikon WikiLatih.png" alt="Ikon WikiLatih">
             <div class="navigation">
                 <ul>
-                    <li><a href="#">Beranda</a></li>
+                    <li><a href="/">Beranda</a></li>
                     <li><a href="#">Kursus</a></li>
-                    <li><a href="#">Artikel</a></li>
+                    <li><a href="/article">Artikel</a></li>
                     <li><a href="#">Tentang Kami</a></li>
                 </ul>
             </div>
@@ -52,7 +52,7 @@
             <p>WikiLatih Daring adalah program pelatihan penyuntingan di Wikipedia yang diadakan secara daring.</p>
             <div class="course-box">
                 <div class="courses">
-                    <img src="storage/Kursus WikiLatih.png" alt="">
+                    <img src="assets/Kursus WikiLatih.png" alt="">
                     <div class="details">
                         <h4>WikiLatih Daring #16</h4>
                         <p>Pelatih: Dian Agustin</p>
@@ -64,7 +64,7 @@
                 </div>  
 
                 <div class="courses">
-                    <img src="storage/Kursus WikiSosial.png" alt="">
+                    <img src="assets/Kursus WikiSosial.png" alt="">
                     <div class="details">
                         <h4>WikiSosial Daring #20</h4>
                         <p>Pelatih: Ayu Sulastri</p>
@@ -75,7 +75,7 @@
                     </div>
                 </div>  
                 <div class="courses">
-                    <img src="storage/Magang WMID.png" alt="">
+                    <img src="assets/Magang WMID.png" alt="">
                     <div class="details">
                         <h4>Magang Wkimedia Indonesia</h4>
                         <p>Koordinator: Raisha Abdillah</p>
@@ -86,7 +86,7 @@
                     </div>
                 </div>  
                 <div class="courses">
-                    <img src="storage/Hibah WMID.png" alt="">
+                    <img src="assets/Hibah WMID.png" alt="">
                     <div class="details">
                         <h4>Hibah Wikimedia Indonesia</h4>
                         <p>Koordinator: Nabial Chiekal Gibran</p>
@@ -134,7 +134,7 @@
                     </div>
                 </div>
             </div>
-            <a class="place-self-center" href="#"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
+            <a class="place-self-center" href="/article"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
         </section>
     </body>
 </html>
