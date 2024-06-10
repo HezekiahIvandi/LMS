@@ -3,6 +3,7 @@
 use App\Http\Controllers\authController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KursusController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\KursusController;
 */
 
 // Route to display the homepage (kursus page)
-Route::get('/', [KursusController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Login page route
 Route::get('/login', [AuthController::class, 'login'])->name('login');

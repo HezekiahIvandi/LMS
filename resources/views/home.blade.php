@@ -6,6 +6,8 @@
         @vite('resources/css/home.css')
         @vite('resources/js/home.js')
         <title>Belajar Daring Wikimedia Indonesia</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -40,52 +42,17 @@
 
         <!-- Course -->
         <section id="course">
-            <h1>Kursus yang Tersedia <span><button class="add-btn">+</button></span></h1>
-            <!-- Pop Up -->
-            <div class="popup">
-                <div class="popup-content">
-                    <span class="close-btn">&times;</span>
-                    <h2>Menambahkan Kursus Baru</h2>
-                    <form id="course-form" action="{{ route('kursus.store') }}" method="POST">
-                   
-                    <input type="text" id="course-name" name="name" placeholder="Nama Kursus" required>
-                    <label for="course-img">Gambar Kursus:</label>
-                    <div class="image-options">
-                        <input type="radio" id="kursus-wikilatih" name="image_url" value="assets/Kursus WikiLatih.png" required>
-                        <label for="kursus-wikilatih">
-                            <img src="assets/Kursus WikiLatih.png" alt="Kursus WikiLatih">
-                        </label>
-                        <input type="radio" id="kursus-wikisosial" name="image_url" value="assets/Kursus WikiSosial.png" required>
-                        <label for="kursus-wikisosial">
-                            <img src="assets/Kursus WikiSosial.png" alt="Kursus WikiSosial">
-                        </label>
-                        <input type="radio" id="magang-wmid" name="image_url" value="assets/Magang WMID.png" required>
-                        <label for="magang-wmid">
-                            <img src="assets/Magang WMID.png" alt="Magang WMID">
-                        </label>
-                        <input type="radio" id="hibah-wmid" name="image_url" value="assets/Hibah WMID.png" required>
-                        <label for="hibah-wmid">
-                            <img src="assets/Hibah WMID.png" alt="Hibah WMID">
-                        </label>
-                    </div>
-                    <input type="text" id="trainer-name" name="trainer" placeholder="Nama Pelatih">
-                    <button type="submit">Simpan</button>
-                </form>
-                </div>
-            </div>
-
+            <h1>Kursus yang Tersedia</h1>
             <p>WikiLatih Daring adalah program pelatihan penyuntingan di Wikipedia yang diadakan secara daring.</p>
             <div class="course-box">
                 @foreach($kursus as $crs)
                     <div class="courses">
-                        <img src="{{ $crs->image_url }}" alt="">
+                        <img src="{{ asset($crs->image_url) }}" alt="">
                         <div class="details">
-                            <h4>{{ $crs->name }}</h4>
+                            <h4>{{ $crs->name }}
+                                <a href="" class="edit-btn"></a>
+                            </h4>
                             <p>Pelatih: {{ $crs->trainer }}</p>
-                        </div>
-                        <div class="btn">
-                            <a class="edit-course-btn" href="#">Edit Kursus</a>
-                            <a class="delete-course-btn" href="#">Hapus Kursus</a>
                         </div>
                     </div>
                 @endforeach
@@ -129,5 +96,69 @@
             </div>
             <a class="place-self-center" href="/article"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
         </section>
+
+        <footer>
+            <div class="content">
+                <div class="top">
+                    <div class="logo-details">
+                        <i class="fab fa-slack"></i>
+                        <span class="logo_name">Belajar Daring Wikimedia Indonesia</span>
+                    </div>
+                    <div class="media-icons">
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-browser-chrome"></i></a>
+                    </div>
+                </div>
+                <div class="link-boxes">
+                    <ul class="box">
+                    <li class="link_name">Program Kami</li>
+                    <li><a href="#">Pendidikan</a></li>
+                    <li><a href="#">GLAM</a></li>
+                    <li><a href="#">Komunitas</a></li>
+                    <li><a href="#">Peningkatan Konten</a></li>
+                    </ul>
+
+                    <ul class="box">
+                    <li class="link_name">Mari Bebaskan Pengetahuan</li>
+                    <li><a href="#">Menyumbang</a></li>
+                    <li><a href="#">Menjadi Sukaralewan</a></li>
+                    <li><a href="#">Menjadi Anggota</a></li>
+                    </ul>
+
+                    <ul class="box">
+                    <li class="link_name">Proyek Kami</li>
+                    <li><a href="#">Wikipedia</a></li>
+                    <li><a href="#">Wiktionary</a></li>
+                    <li><a href="#">Wikibooks</a></li>
+                    <li><a href="#">Wikisource</a></li>
+                    </ul>
+                    
+                    <ul class="box">
+                    <li class="link_name">Proyek Kami</li>
+                    <li><a href="#">Wikiquote</a></li>
+                    <li><a href="#">Commons</a></li>
+                    <li><a href="#">Wikidata</a></li>
+                    </ul>
+                    
+                    <ul class="box input-box">
+                    <li class="link_name">Berlangganan</li>
+                    <li><input type="text" placeholder=""></li>
+                    <li><input type="button" class="subscribe-btn" value="Berlangganan"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-details">
+                <div class="bottom_text">
+                    <span class="copyright_text">Copyright © 2024 <a href="#">Belajar Daring Wikimedia Indonesia.</a>All rights reserved</span>
+                    <span class="policy_terms">
+                    <a href="#">Privacy policy</a>
+                    <a href="#">Terms & condition</a>
+                    </span>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>

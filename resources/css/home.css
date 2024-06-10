@@ -164,6 +164,7 @@ nav .navigation ul li a:hover {
 .courses {
     background-color: white;
     width: 300px;
+    height: 250px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -445,4 +446,173 @@ nav .navigation ul li a:hover {
 
 #article-card:hover {
     transform: translateY(-10px);
+}
+
+body {
+    margin-bottom: 0; /* Hapus ruang di bawah footer */
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    background: #002335;
+    width: 100%;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100px;
+    height: 1px;
+    width: 100%;
+    background: #AFAFB6;
+}
+
+footer .content {
+    max-width: 1250px;
+    margin: auto;
+    padding: 30px 40px 40px 40px;
+    color: #fff;
+}
+
+footer .content .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+footer .content .top .logo-details {
+    font-size: 30px;
+}
+
+footer .content .top .media-icons a {
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 17px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+footer .content .top .media-icons a:hover {
+    opacity: 0.8;
+}
+
+footer .content .link-boxes {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .content .link-boxes .box {
+    width: calc(20% - 10px);
+}
+
+footer .content .link-boxes .box .link_name {
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+footer .content .link-boxes .box .link_name::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    height: 2px;
+    width: 40px;
+    background: #fff;
+}
+
+footer .content .link-boxes .box li {
+    margin: 6px 0;
+}
+
+footer .content .link-boxes .box li a {
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.4s ease;
+}
+
+footer .content .link-boxes .box li a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+footer .content .link-boxes .input-box input {
+    height: 40px;
+    width: calc(100% + 55px);
+    outline: none;
+    border: 1px solid #000;
+    background: #fff;
+    border-radius: 4px;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #fff;
+    margin-top: 5px;
+}
+
+footer .content .link-boxes .input-box input::placeholder {
+    color: #AFAFB6;
+    font-size: 16px;
+}
+
+footer .content .link-boxes .input-box input[type="button"] {
+    background: #006699;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 4px 0;
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+}
+
+footer .content .link-boxes .input-box input[type="button"]:hover {
+    opacity: 1;
+}
+
+footer .bottom-details {
+    background: #0F0844;
+}
+
+footer .bottom-details .bottom_text {
+    max-width: 1250px;
+    margin: auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer .bottom-details .bottom_text span,
+footer .bottom-details .bottom_text a {
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+footer .bottom-details .bottom_text a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+footer .bottom-details .bottom_text a {
+    margin-right: 10px;
+}
+
+.logo_name {
+    font-size: 16px;
+    font-weight: 600;
 }
