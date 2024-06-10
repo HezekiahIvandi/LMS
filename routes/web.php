@@ -17,11 +17,16 @@ use App\Http\Controllers\KursusController;
 
 // Route to display the homepage (kursus page)
 Route::get('/', [KursusController::class, 'index'])->name('home');
-Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
 
 // Login page route
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 
-// Route to store course data
-Route::post('/kursus', [KursusController::class, 'store'])->name('kursus.store');
+Route::get('/article', function () {
+    return view('article');
+});
+
+Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
+Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.store');
+Route::put('/kursus/edit/{id}', [KursusController::class, 'edit'])->name('kursus.edit');
+Route::delete('/kursus/destroy/{id}', [KursusController::class, 'destroy'])->name('kursus.destroy');

@@ -14,9 +14,9 @@
             <img src="assets\Ikon WikiLatih.png" alt="Ikon WikiLatih">
             <div class="navigation">
                 <ul>
-                    <li><a href="#">Beranda</a></li>
+                    <li><a href="/">Beranda</a></li>
                     <li><a href="#">Kursus</a></li>
-                    <li><a href="#">Artikel</a></li>
+                    <li><a href="/article">Artikel</a></li>
                     <li><a href="#">Tentang Kami</a></li>
                 </ul>
             </div>
@@ -47,7 +47,7 @@
                     <span class="close-btn">&times;</span>
                     <h2>Menambahkan Kursus Baru</h2>
                     <form id="course-form" action="{{ route('kursus.store') }}" method="POST">
-                    @csrf
+                   
                     <input type="text" id="course-name" name="name" placeholder="Nama Kursus" required>
                     <label for="course-img">Gambar Kursus:</label>
                     <div class="image-options">
@@ -78,7 +78,7 @@
             <div class="course-box">
                 @foreach($kursus as $crs)
                     <div class="courses">
-                        <img src="{{ asset($crs->image_url) }}" alt="">
+                        <img src="{{ $crs->image_url }}" alt="">
                         <div class="details">
                             <h4>{{ $crs->name }}</h4>
                             <p>Pelatih: {{ $crs->trainer }}</p>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-            <a class="place-self-center" href="#"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
+            <a class="place-self-center" href="/article"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
         </section>
     </body>
 </html>

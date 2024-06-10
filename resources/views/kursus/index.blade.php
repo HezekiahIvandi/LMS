@@ -6,6 +6,8 @@
         @vite('resources/css/home.css')
         @vite('resources/js/home.js')
         <title>Belajar Daring Wikimedia Indonesia</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -14,9 +16,9 @@
             <img src="assets\Ikon WikiLatih.png" alt="Ikon WikiLatih">
             <div class="navigation">
                 <ul>
-                    <li><a href="#">Beranda</a></li>
+                    <li><a href="/">Beranda</a></li>
                     <li><a href="#">Kursus</a></li>
-                    <li><a href="#">Artikel</a></li>
+                    <li><a href="/article">Artikel</a></li>
                     <li><a href="#">Tentang Kami</a></li>
                 </ul>
             </div>
@@ -80,12 +82,22 @@
                     <div class="courses">
                         <img src="{{ asset($crs->image_url) }}" alt="">
                         <div class="details">
-                            <h4>{{ $crs->name }}</h4>
+                            <h4>{{ $crs->name }}
+                                <a href="" class="edit-btn">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </h4>
                             <p>Pelatih: {{ $crs->trainer }}</p>
                         </div>
-                        <div class="btn">
-                            <a class="edit-course-btn" href="#">Edit Kursus</a>
-                            <a class="delete-course-btn" href="#">Hapus Kursus</a>
+
+                        <div class="btn-container">
+                            <a class="edit-course-btn" href="#">Tambah Materi</a>
+                            <form action="{{ route('kursus.destroy', $crs->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus kursus ini?');">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="delete-course-btn">Hapus Kursus</button>
+                            </form>
+                        
                         </div>
                     </div>
                 @endforeach
@@ -127,7 +139,7 @@
                     </div>
                 </div>
             </div>
-            <a class="place-self-center" href="#"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
+            <a class="place-self-center" href="/article"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
         </section>
     </body>
 </html>
