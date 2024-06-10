@@ -21,6 +21,7 @@ Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
 
 // Login page route
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
 
 // Route to store course data
 Route::post('/kursus', [KursusController::class, 'store'])->name('kursus.store');
