@@ -249,6 +249,7 @@ nav .navigation ul li a:hover {
     padding-right: 30px;
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    width: 500px;
     max-width: 500px;
 }
 
@@ -256,6 +257,7 @@ nav .navigation ul li a:hover {
     padding-bottom: 20px;
     font-size: 20px;
     font-weight: 700;
+    text-align: center;
 }
 
 .popup-content label {
@@ -732,4 +734,172 @@ footer .bottom-details .bottom_text a {
     font-size: 16px;
     font-weight: 400;
     color: #555;
+}
+
+/* Announcement */
+#anc-hero {
+    background-image: url("../../public/assets/bg-anc.png");
+    width: 100%;
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+#anc-hero h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#anc-hero p {
+    width: 50%;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+
+#anc-hero span {
+    font-weight: 800;
+}
+
+/* Announcement Form */
+#anc-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#anc-form input[type="text"], 
+#anc-form select,
+#anc-form textarea, 
+#anc-form button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+#anc-form button {
+    background-color: #006699;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#anc-form button:hover {
+    background-color: #004466;
+}
+
+#anc-form input:focus, #anc-form button:focus {
+    outline: none;
+    border-color: #006699;
+    box-shadow: 0 0 5px rgba(0, 102, 153, 0.5);
+}
+
+#announcement {
+    padding: 5vw 8vw 0 8vw;
+    text-align: center;
+}
+
+#announcement h1 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 60px;
+}
+
+#announcement span {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+#announcement p {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+#announcement .fea-base {
+    display: grid;
+    grid-template-columns: column;
+    grid-gap: 2rem;
+    margin-bottom: 80px;
+}
+
+#announcement .fea-box {
+    background: #fff;
+    text-align: start;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    padding: 20px 40px;
+}
+
+#announcement .fea-box:hover {
+    transform: translateY(-10px);
+}
+
+#announcement .fea-box i img {
+    width: 200px
+}
+
+#announcement .fea-box h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding: 10px 0 5px 0;
+}
+
+#announcement .fea-box p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #555;
+}
+
+.edit-anc-btn {
+    display: flex;
+    color: white;
+    background: #006699;
+    transition: 0.2s ease;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 4px;
+    margin-top: -10px;
+}
+
+.edit-anc-btn:hover {
+    background: #094a6b;
+}
+
+.delete-anc-btn {
+    color: white;
+    background: #339966;
+    transition: 0.2s ease;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 4px;
+    margin-top: -10px;
+}
+
+.delete-anc-btn:hover {
+    background: #115734;
 }

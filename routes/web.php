@@ -3,6 +3,7 @@
 use App\Http\Controllers\authController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KursusController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -35,3 +36,7 @@ Route::delete('/kursus/destroy/{id}', [KursusController::class, 'destroy'])->nam
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
+Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');
+Route::post('/announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store');
+Route::delete('/announcement/destroy/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');

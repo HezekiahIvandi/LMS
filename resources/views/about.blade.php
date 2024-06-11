@@ -5,7 +5,7 @@
         <h2>Tentang Kami</h2>
         <p><b>Wikimedia Indonesia</b> adalah organisasi nirlaba dan merupakan mitra lokal dari Wikimedia Foundation, pengelola situs populer dunia Wikipedia dan proyek-proyek berbasis wiki lainnya. Wikimedia Indonesia berdedikasi untuk mendorong pertumbuhan, pengembangan, dan penyebaran pengetahuan dalam bahasa Indonesia dan bahasa lain yang dipertuturkan di Indonesia secara bebas dan gratis.</p>
         <div class="btn">
-            <a class="program-btn" href="#">Lihat Proyek Kami</a>
+            <a class="program-btn" href="#program">Lihat Proyek Kami</a>
         </div>
     </section>
 
