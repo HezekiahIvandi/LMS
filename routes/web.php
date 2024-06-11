@@ -4,7 +4,9 @@ use App\Http\Controllers\authController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
+use App\Models\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +26,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 
-Route::get('/article', function () {
-    return view('article');
-});
+Route::get('/article', [ArticleController::class, 'index'])->name('article');
+Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
+Route::delete('/article/destroy/{id}', [ArticleController::class, 'destroy'])->name('article.destroy');
 
 Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
 Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.store');
