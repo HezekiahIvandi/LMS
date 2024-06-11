@@ -31,3 +31,7 @@ Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
 Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.store');
 Route::put('/kursus/edit/{id}', [KursusController::class, 'edit'])->name('kursus.edit');
 Route::delete('/kursus/destroy/{id}', [KursusController::class, 'destroy'])->name('kursus.destroy');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
