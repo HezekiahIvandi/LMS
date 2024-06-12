@@ -1,0 +1,62 @@
+/* Import Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Tag */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 10;
+    border-bottom: 2px solid #006699;
+}
+
+nav img {
+    width: 80px;
+    cursor: pointer;
+}
+
+nav .navigation {
+    width: 100%; 
+    display: flex;
+    justify-content: center; 
+}
+
+nav .navigation ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+nav .navigation ul li {
+    list-style: none;
+    margin-left: 30px;
+}
+
+nav .navigation ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+nav .navigation ul li a:hover {
+    color: #006699;
+}

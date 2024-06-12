@@ -1,5 +1,5 @@
 <nav>
-    <img src="assets\Ikon WikiLatih.png" alt="Ikon WikiLatih">
+    <img src="{{ URL::asset('assets\Ikon WikiLatih.png') }}" alt="Ikon WikiLatih">
     <div class="navigation">
         <ul>
             <li><a href="/">Beranda</a></li>

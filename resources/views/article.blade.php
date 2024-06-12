@@ -1,6 +1,7 @@
-@extends('layouts.template')
+@extends('layouts.alttemplate')
 
 @section('content')
+@vite('resources/css/article.css')
 @vite('resources/js/article.js')
 
 <div id="popup" class="hidden fixed left-0 right-0 bg-black bg-opacity-80 w-[100%] h-[100%] z-50">
@@ -15,7 +16,7 @@
             <label for="art-summary" class="text-left pb-[10px]">Isi Artikel:</label>
             <textarea class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" name="article_summary" id="art-summary" placeholder="Masukkan is artikel di sini..." required></textarea>
 
-            <button class="mb-[25px] p-[10px] rounded text-[16px] text-white bg-[#006699] hover:bg-[#004466] ease-linear transition cursor-pointer" type="submit">Simpan</button>
+            <button class="mb-[25px] p-[10px] rounded text-[16px] text-white bg-[#006699] hover:bg-[#004466] ease transition cursor-pointer" type="submit">Simpan</button>
         </form>
     </div>
 </div>
@@ -23,7 +24,7 @@
 <!-- Article -->
 <div id="article" class="pt-32 grid grid-cols-1 min-h-[60vh]">
     <h1 class="text-center text-[24px] font-extrabold mb-4 text-white">Artikel<span><button id="add-btn" class="text-white text-[16px] bg-[#006699] ml-[10px] rounded cursor-pointer border-nono px-[6px]">+</button></span></h1>
-    <form class="w-4/5 md:w-3/5 lg:w-2/5 mx-auto">
+    <form class="w-4/5 md:w-4/5 lg:w-3/5 mx-auto">
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class="relative">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -37,9 +38,9 @@
     </form>
     <div id="article-collection" class="mb-8">
         @foreach ($article as $art)
-        <div id="article-card" class="bg-white w-4/5 md:w-3/5 lg:w-2/5 mx-auto rounded-lg p-6 my-8 shadow-md">
+        <div id="article-card" class="bg-white w-4/5 md:w-4/5 lg:w-3/5 mx-auto rounded-lg p-6 my-8 shadow-md">
             <div class="flex">
-                <img src="assets\Wikimedia.svg" class="w-40 h-40 rounded-lg">
+                <img src="{{ URL::asset('assets\Wikimedia.svg') }}" class="w-40 h-40 rounded-lg">
                 <div class="grid grid-cols-1 ml-8 h-40 place-content-between w-full">
                     <div>
                         <p class="text-[18px] font-bold">{{ $art->article_title }}</p>
@@ -50,11 +51,11 @@
             </div>
             <div class="w-full mt-4 flex">
                 <div class="ml-auto flex">
-                    <button class="text-white bg-[#006699] hover:bg-[#0c374d] ease-linear transition text=[14px] font-semibold py-[8px] px-[10px] rounded mr-[10px]">Sunting Artikel</button>
+                    <button class="text-white bg-[#006699] hover:bg-[#0c374d] ease transition text=[14px] font-semibold py-[8px] px-[10px] rounded mr-[10px]">Sunting Artikel</button>
                     <form action="{{ route('article.destroy', $art->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus artikel ini?');">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="text-white bg-[#339966] hover:bg-[#115734] ease-linear transition text=[14px] font-semibold py-[8px] px-[10px] rounded ">Hapus Artikel</button>
+                        <button type="submit" class="text-white bg-[#339966] hover:bg-[#115734] ease transition text=[14px] font-semibold py-[8px] px-[10px] rounded ">Hapus Artikel</button>
                     </form>
                 </div>
             </div>

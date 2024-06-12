@@ -68,7 +68,7 @@
                             $altText = "Hibah WMID";
                         }
                     @endphp
-                    <i><img src="{{ $imageSrc }}" alt="{{ $altText }}"></i>
+                    <i><img src="{{ URL::asset($imageSrc) }}" alt="{{ $altText }}"></i>
                     <div class="announcement-date">{{ $anc->created_at->format('d M Y H:i') }}</div>
                     <h3>{{ $anc->title_announcement }}</h3>
                     <p>{{ $anc->announcement }}</p>

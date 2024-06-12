@@ -13,54 +13,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* Navigation */
-nav {
-    position: fixed;
-    width: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    z-index: 1000;
-}
-
-nav img {
-    width: 80px;
-    cursor: pointer;
-}
-
-nav .navigation {
-    width: 100%; 
-    display: flex;
-    justify-content: center; 
-}
-
-nav .navigation ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-}
-
-nav .navigation ul li {
-    list-style: none;
-    margin-left: 30px;
-}
-
-nav .navigation ul li a {
-    text-decoration: none;
-    color: black;
-    font-size: 16px;
-    font-weight: 600;
-    transition: 0.2s ease;
-}
-
-nav .navigation ul li a:hover {
-    color: #006699;
-}
-
 #article {
     background-image: linear-gradient(to right top, #046494, #007499, #008391, #008f7e, #339966);
     width: 100%;
