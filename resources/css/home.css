@@ -23,6 +23,7 @@ nav {
     align-items: center;
     padding: 10px 20px;
     z-index: 10;
+    border-bottom: 2px solid #006699;
 }
 
 nav img {
@@ -817,6 +818,9 @@ footer .bottom-details .bottom_text a {
     font-size: 20px;
     font-weight: 800;
     margin-bottom: 60px;
+    display: inline-block;
+    text-align: left;
+    margin-right: 400px;
 }
 
 #announcement span {
@@ -869,6 +873,47 @@ footer .bottom-details .bottom_text a {
     font-size: 16px;
     font-weight: 400;
     color: #555;
+}
+
+.sort-btn {
+    display: inline-block;
+    text-align: right;
+    color: #fff;
+    font-size: 16px;
+    padding: 6px 13px;
+    background-color: #339966;
+    border-radius: 4px;
+}
+
+.anc-search-form {
+    display: inline-block;
+    text-align: right;
+    margin-left: -10px;
+    margin-right: 20px;
+}
+
+.anc-search-form input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    width: 300px;
+}
+
+.anc-search-form button[type="submit"] {
+    padding: 8px 15px;
+    background-color: #006699;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px; /* Atur jarak antara input dan tombol */
+}
+
+.anc-search-form button[type="submit"]:hover {
+    background-color: #004466;
 }
 
 .edit-anc-btn {

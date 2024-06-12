@@ -31,10 +31,22 @@
             </form>
         </div>
     </div>
-
+    
     <!-- Program -->
     <section id="announcement">
         <h1>Pengumuman Penting <span><button class="add-btn">+</button></span></h1>
+        
+        <!-- Fitur Tambahan: Search Bar -->
+        <form class="anc-search-form" action="{{ route('announcement.search') }}" method="GET">
+            <input type="text" name="search" placeholder="Cari Pengumuman...">
+            <button type="submit">Cari</button>
+        </form>
+
+        <!-- Fitur Tambahan: Sort -->
+        <div class="sort-btn">
+            <button onclick="sortByDate()">Urutkan dari yang terbaru</button>
+        </div>
+
         <div class="fea-base">
             @foreach($announcement as $anc)
                 <div class="fea-box">
@@ -57,6 +69,7 @@
                         }
                     @endphp
                     <i><img src="{{ $imageSrc }}" alt="{{ $altText }}"></i>
+                    <div class="announcement-date">{{ $anc->created_at->format('d M Y H:i') }}</div>
                     <h3>{{ $anc->title_announcement }}</h3>
                     <p>{{ $anc->announcement }}</p>
 

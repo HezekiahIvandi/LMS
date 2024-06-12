@@ -44,3 +44,5 @@ Route::post('/announcement/store', [AnnouncementController::class, 'store'])->na
 Route::get('/mahasiswa/edit/{id}', [AnnouncementController::class, 'edit'])->name('announcement.edit');
 Route::put('/announcement/update/{id}', [AnnouncementController::class, 'update'])->name('announcement.update');
 Route::delete('/announcement/destroy/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');
+
+Route::get('/announcement/search', [AnnouncementController::class, 'search'])->name('announcement.search');

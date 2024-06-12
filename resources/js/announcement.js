@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const popup = document.querySelector('.popup');
     const closeBtn = document.querySelector('.close-btn');
     const ancForm = document.getElementById('anc-form');
+    const sortBtn = document.querySelector('.sort-btn button');
 
     addBtn.addEventListener('click', function() {
         popup.style.display = 'block';
@@ -23,4 +24,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         popup.style.display = 'none';
     });
-})
+
+    function sortByDate() {
+        const announcements = document.querySelectorAll('.fea-box');
+        const announcementsArray = Array.from(announcements);
+
+        announcementsArray.sort(function(a, b) {
+            const dateA = new Date(a.querySelector('.announcement-date').innerText);
+            const dateB = new Date(b.querySelector('.announcement-date').innerText);
+            return dateB - dateA; 
+        });
+
+        const feaBase = document.querySelector('.fea-base');
+        feaBase.innerHTML = '';
+
+        announcementsArray.forEach(function(announcement) {
+            feaBase.appendChild(announcement);
+        });
+    }
+
+    sortBtn.addEventListener('click', sortByDate);
+});

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
 use App\Models\Kursus;
@@ -68,4 +69,21 @@ class AnnouncementController extends Controller
         return redirect()->route('announcement.index')
             ->with('success', 'Pengumuman berhasil di perbaharui!');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+    
+        // Convert the search term to lowercase
+        $searchLower = strtolower($search);
+    
+        $announcement = Announcement::where(DB::raw('lower(title_announcement)'), 'like', '%' . $searchLower . '%')
+            ->orWhere(DB::raw('lower(announcement)'), 'like', '%' . $searchLower . '%')
+            ->get();
+    
+        $kursus = Kursus::all();
+    
+        return view('announcement.index', compact('announcement', 'kursus'));
+    }
+
 }
