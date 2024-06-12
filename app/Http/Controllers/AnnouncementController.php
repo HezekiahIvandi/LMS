@@ -42,7 +42,14 @@ class AnnouncementController extends Controller
             ->with('success', 'Pengumuman berhasil di hapus!');
     }
 
-    public function edit(Request $request, $id)
+    public function edit($id)
+    {
+        $anc = Announcement::find($id);
+        $kursus = Kursus::all(); 
+        return view('announcement.edit', compact('anc', 'kursus'));
+    }
+
+    public function update(Request $request, $id)
     {
         $request->validate([
             'course_name' => 'required',

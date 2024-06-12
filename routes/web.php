@@ -39,4 +39,6 @@ Route::get('/about', function () {
 
 Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');
 Route::post('/announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store');
+Route::get('/mahasiswa/edit/{id}', [AnnouncementController::class, 'edit'])->name('announcement.edit');
+Route::put('/announcement/update/{id}', [AnnouncementController::class, 'update'])->name('announcement.update');
 Route::delete('/announcement/destroy/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');

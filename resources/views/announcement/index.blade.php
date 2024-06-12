@@ -61,7 +61,9 @@
                     <p>{{ $anc->announcement }}</p>
 
                     <div class="btn-container">
-                        <a class="edit-anc-btn" href="#">Sunting Pengumuman</a>
+                        <a href="{{ route('announcement.edit', $anc->id) }}" class="edit-anc-btn">
+                            Sunting Pengumuman
+                        </a>
                         <form action="{{ route('announcement.destroy', $anc->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus pengumuman ini?');">
                             @method('delete')
                             @csrf
