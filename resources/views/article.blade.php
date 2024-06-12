@@ -1,106 +1,66 @@
-<!DOCTYPE html>
-<html lang="id">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        @vite('resources/css/home.css')
-        <!-- @vite('resources/js/home.js') -->
-        <title>Belajar Daring Wikimedia Indonesia</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-    </head>
+@extends('layouts.template')
 
-    <body>
-        <!-- Navigation -->
-        <nav>
-            <img src="assets\Ikon WikiLatih.png" alt="Ikon WikiLatih">
-            <div class="navigation">
-                <ul>
-                    <li><a href="/">Beranda</a></li>
-                    <li><a href="#">Kursus</a></li>
-                    <li><a href="/article">Artikel</a></li>
-                    <li><a href="#">Tentang Kami</a></li>
-                </ul>
+@section('content')
+@vite('resources/js/article.js')
+
+<div id="popup" class="hidden fixed left-0 right-0 bg-black bg-opacity-80 w-[100%] h-[100%] z-50">
+    <div class="absolute top-[50%] left-[50%] bg-white bg-opacity-100 translate-x-[-50%] translate-y-[-50%] px-[30px] pt-[50px] pb-[10px] shadow-md shadow-black w-[500px]">
+        <span id="close-btn" class="absolute top-[10px] right-[10px] cursor-pointer text-[24px] font-extrabold">&times;</span>
+        <h2 class="pb-[20px] text-[20px] font-bold text-center">Menambahkan Artikel Baru</h2>
+        <form class="flex flex-col" id="art-form" action="{{ route('article.store') }}" method="POST">
+            @csrf
+            <label for="art-title" class="text-left pb-[10px]">Judul Artikel:</label>
+            <input class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" type="text" id="art-title" name="article_title" placeholder="Judul Artikel" required>
+
+            <label for="art-summary" class="text-left pb-[10px]">Isi Artikel:</label>
+            <textarea class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" name="article_summary" id="art-summary" placeholder="Masukkan is artikel di sini..." required></textarea>
+
+            <button class="mb-[25px] p-[10px] rounded text-[16px] text-white bg-[#006699] hover:bg-[#004466] ease-linear transition cursor-pointer" type="submit">Simpan</button>
+        </form>
+    </div>
+</div>
+
+<!-- Article -->
+<div id="article" class="pt-32 grid grid-cols-1 min-h-[60vh]">
+    <h1 class="text-center text-[24px] font-extrabold mb-4 text-white">Artikel<span><button id="add-btn" class="text-white text-[16px] bg-[#006699] ml-[10px] rounded cursor-pointer border-nono px-[6px]">+</button></span></h1>
+    <form class="w-4/5 md:w-3/5 lg:w-2/5 mx-auto">
+        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
             </div>
-        </nav>
-
-        <!-- Home -->
-        <section id="home">
-            <h2>Belajar Daring Wikimedia Indonesia</h2>
-            <p>Kelas Daring Wikimedia Indonesia menyediakan materi-materi pelatihan untuk berkontribusi di proyek-proyek Wikimedia. Materi-materi yang tersedia di Kelas Daring Wikimedia Indonesia dapat diakses dan diikuti oleh publik secara daring (online). Kelas Daring Wikimedia Indonesia dikelola langsung oleh Wikimedia Indonesia.</p>
-            <div class="btn">
-                <a class="course-btn" href="#">Jelajahi Kursus</a>
-                <a class="about-btn" href="#">Tentang Kami</a>
-            </div>
-        </section>
-
-        <!-- Course -->
-        <section id="course">
-            <h1>Kursus yang Tersedia</h1>
-            <p>WikiLatih Daring adalah program pelatihan penyuntingan di Wikipedia yang diadakan secara daring.</p>
-            <div class="course-box">
-                @foreach($kursus as $crs)
-                    <div class="courses">
-                        <img src="{{ asset($crs->image_url) }}" alt="">
-                        <div class="details">
-                            <h4>{{ $crs->name }}
-                                <a href="" class="edit-btn">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
-                            </h4>
-                            <p>Pelatih: {{ $crs->trainer }}</p>
-                        </div>
-
-                        <div class="btn-container">
-                            <a class="edit-course-btn" href="#">Tambah Materi</a>
-                            <form action="{{ route('kursus.destroy', $crs->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus kursus ini?');">
-                                @method('delete')
-                                @csrf
-                                <button type="submit" class="delete-course-btn">Hapus Kursus</button>
-                            </form>
-                        
-                        </div>
+            <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-black border border-gray-300 rounded-md bg-gray-50" placeholder="Mencari Artikel." required />
+            <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-[#006699] hover:bg-[#004466] font-semibold rounded-md text-sm px-4 py-2">Search</button>
+        </div>
+    </form>
+    <div id="article-collection" class="mb-8">
+        @foreach ($article as $art)
+        <div id="article-card" class="bg-white w-4/5 md:w-3/5 lg:w-2/5 mx-auto rounded-lg p-6 my-8 shadow-md">
+            <div class="flex">
+                <img src="assets\Wikimedia.svg" class="w-40 h-40 rounded-lg">
+                <div class="grid grid-cols-1 ml-8 h-40 place-content-between w-full">
+                    <div>
+                        <p class="text-[18px] font-bold">{{ $art->article_title }}</p>
+                        <p class="text-[16px] font-normal">{{ $art->article_summary }}</p>
                     </div>
-                @endforeach
-            </div>
-        </section>
-
-        <!-- Article -->
-        <section id="article" class="py-16 grid grid-cols-1">
-            <h1 class="text-center text-[20px] font-extrabold mb-6 text-white">Artikel Terbaru</h1>
-            <div id="article-collection">
-                <div id="article-card" class="bg-white flex w-4/5 md:w-3/5 lg:w-2/5 m-auto rounded-2xl p-6 my-8 shadow-md">
-                    <img src="assets\Wikimedia.svg" class="w-40 h-40 rounded-2xl">
-                    <div class="grid grid-cols-1 ml-8 h-40 place-content-between">
-                        <div>
-                            <p class="text-[18px] font-bold">Judul Artikel 1</p>
-                            <p class="text-[16px] font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                        <p class="text-right text-[16px] font-normal">6 Juni 2024</p>
-                    </div>
-                </div>
-                <div id="article-card" class="bg-white flex w-4/5 md:w-3/5 lg:w-2/5 m-auto rounded-2xl p-6 my-8 shadow-md">
-                    <img src="assets\Wikimedia.svg" class="w-40 h-40 rounded-2xl">
-                    <div class="grid grid-cols-1 ml-8 h-40 place-content-between">
-                        <div>
-                            <p class="text-[18px] font-bold">Judul Artikel 2</p>
-                            <p class="text-[16px] font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                        <p class="text-right text-[16px] font-normal">5 Juni 2024</p>
-                    </div>
-                </div>
-                <div id="article-card" class="bg-white flex w-4/5 md:w-3/5 lg:w-2/5 m-auto rounded-2xl p-6 my-8 shadow-md">
-                    <img src="assets\Wikimedia.svg" class="w-40 h-40 rounded-2xl">
-                    <div class="grid grid-cols-1 ml-8 h-40 place-content-between">
-                        <div>
-                            <p class="text-[18px] font-bold">Judul Artikel 3</p>
-                            <p class="text-[16px] font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                        <p class="text-right text-[16px] font-normal">4 Juni 2024</p>
-                    </div>
+                    <p class="text-right text-[16px] font-normal">{{ $art->created_at}}</p>
                 </div>
             </div>
-            <a class="place-self-center" href="/article"><button class="w-[200px] h-[50px] bg-[#339966] hover:bg-white text-white hover:text-[#339966] text-[16px] font-bold  mt-6 rounded-md ease-linear duration-200">Artikel Lainnya</button></a>
-        </section>
-    </body>
-</html>
+            <div class="w-full mt-4 flex">
+                <div class="ml-auto flex">
+                    <button class="text-white bg-[#006699] hover:bg-[#0c374d] ease-linear transition text=[14px] font-semibold py-[8px] px-[10px] rounded mr-[10px]">Sunting Artikel</button>
+                    <form action="{{ route('article.destroy', $art->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus artikel ini?');">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="text-white bg-[#339966] hover:bg-[#115734] ease-linear transition text=[14px] font-semibold py-[8px] px-[10px] rounded ">Hapus Artikel</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        @endforeach
+    </div>
+</div>
+@endsection
