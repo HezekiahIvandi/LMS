@@ -8,11 +8,12 @@
     <div class="absolute top-[50%] left-[50%] bg-white bg-opacity-100 translate-x-[-50%] translate-y-[-50%] px-[30px] pt-[50px] pb-[10px] shadow-md shadow-black w-[500px]">
         <span id="close-btn" class="absolute top-[10px] right-[10px] cursor-pointer text-[24px] font-extrabold">&times;</span>
         <h2 class="pb-[20px] text-[20px] font-bold text-center">Menambahkan Artikel Baru</h2>
-        <form class="flex flex-col" id="art-form" action="{{ route('article.store') }}" method="POST">
+        <form class="flex flex-col" id="art-form" action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="art-title" class="text-left pb-[10px]">Judul Artikel:</label>
             <input class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" type="text" id="art-title" name="article_title" placeholder="Judul Artikel" required>
-
+            <label for="article_image" class="text-left pb-[10px]">Gambar Thumbnail Artikel</label>
+            <input type="file" name="article_image" class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" accept="image/*" required>
             <label for="art-summary" class="text-left pb-[10px]">Isi Artikel:</label>
             <textarea class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" name="article_summary" id="art-summary" placeholder="Masukkan is artikel di sini..." required></textarea>
 
@@ -39,7 +40,7 @@
         @foreach ($article as $art)
         <div id="article-card" class="bg-white w-4/5 md:w-4/5 lg:w-3/5 mx-auto rounded-lg p-6 my-8 shadow-md">
             <div class="flex">
-                <img src="{{ URL::asset('assets\Wikimedia.svg') }}" class="w-40 h-40 rounded-lg">
+                <img src="{{ URL::asset($art->article_image) }}" class="w-60 h-40 rounded-lg">
                 <div class="grid grid-cols-1 ml-8 h-40 place-content-between w-full">
                     <div>
                         <p class="text-[18px] font-bold">{{ $art->article_title }}</p>

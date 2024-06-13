@@ -20,15 +20,27 @@ class ArticleController extends Controller
         $request->validate([
             'article_title' => 'required',
             'article_summary' => 'required',
+            'article_image' => 'required|image|mimes:jpeg,png,gif|max:2048',
         ]);
-        
-        $article = new Article;
-        $article->article_title = $request->article_title;
-        $article->article_summary = $request->article_summary;;
-        $article->save();
-        
-        return redirect()->route('article')
-            ->with('success', 'Artikel baru berhasil ditambahkan.');
+
+        if ($request->hasFile('article_image')) {
+            $imageName = time().'.'.$request->article_image->getClientOriginalExtension();
+            if ($request->article_image->storeAs('public', $imageName)) {
+                // Image stored successfully
+                $article = new Article;
+                $article->article_title = $request->article_title;
+                $article->article_summary = $request->article_summary;
+                $article->article_image = 'storage/' . $imageName;
+                $article->save();
+                return redirect()->route('article')->with('success', 'Artikel baru berhasil ditambahkan.');
+            } else {
+                // Failed to store image
+                return redirect()->back()->with('error', 'Failed to store image.');
+            }
+        } else {
+            // No image uploaded
+            return redirect()->back()->with('error', 'No image uploaded.');
+        }
     }
 
     public function destroy($id) {
