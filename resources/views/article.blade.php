@@ -22,17 +22,16 @@
 </div>
 
 <!-- Article -->
-<div id="article" class="pt-32 grid grid-cols-1 min-h-[60vh]">
+<div id="article" class="pt-36 pb-8 min-h-[60vh]">
     <h1 class="text-center text-[24px] font-extrabold mb-4 text-white">Artikel<span><button id="add-btn" class="text-white text-[16px] bg-[#006699] ml-[10px] rounded cursor-pointer border-nono px-[6px]">+</button></span></h1>
-    <form class="w-4/5 md:w-4/5 lg:w-3/5 mx-auto">
-        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <form class="w-4/5 md:w-4/5 lg:w-3/5 mx-auto" action=" {{ route('article.search') }}" method="GET">
         <div class="relative">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <svg class="w-4 h-4 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
             </div>
-            <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-black border border-gray-300 rounded-md bg-gray-50" placeholder="Mencari Artikel." required />
+            <input type="text" name="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-black border border-gray-300 rounded-md bg-gray-50" placeholder="Mencari Artikel." required />
             <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-[#006699] hover:bg-[#004466] font-semibold rounded-md text-sm px-4 py-2">Search</button>
         </div>
     </form>

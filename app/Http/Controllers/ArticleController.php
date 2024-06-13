@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -36,5 +37,19 @@ class ArticleController extends Controller
 
         return redirect()->route('article')
             ->with('success', 'Artikel berhasil di hapus!');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+    
+        // Convert the search term to lowercase
+        $searchLower = strtolower($search);
+    
+        $article = Article::where(DB::raw('lower(article_title)'), 'like', '%' . $searchLower . '%')
+            ->orWhere(DB::raw('lower(article_summary)'), 'like', '%' . $searchLower . '%')
+            ->get();
+    
+        return view('article', compact('article'));
     }
 }
