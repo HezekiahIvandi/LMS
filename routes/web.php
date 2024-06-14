@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Models\Article;
 
@@ -23,8 +25,10 @@ use App\Models\Article;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Login page route
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
+
 
 Route::get('/article', [ArticleController::class, 'index'])->name('article');
 Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
@@ -46,3 +50,6 @@ Route::put('/announcement/update/{id}', [AnnouncementController::class, 'update'
 Route::delete('/announcement/destroy/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');
 
 Route::get('/announcement/search', [AnnouncementController::class, 'search'])->name('announcement.search');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
