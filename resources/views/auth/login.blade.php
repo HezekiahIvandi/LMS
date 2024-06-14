@@ -7,7 +7,8 @@
   <script src="https://kit.fontawesome.com/7d135c556b.js" crossorigin="anonymous"></script>
 </head>
 <body class="flex justify-center bg-img h-[100%] items-center">
-  <form class="bg-transparent px-[2rem] py-[2rem] rounded-lg border-[1px] backdrop-blur-[9px] min-h-[28rem]">
+  <form action='/login' method='post' class="bg-transparent px-[2rem] py-[2rem] rounded-lg border-[1px] backdrop-blur-[9px] min-h-[28rem]">
+    @csrf
     @if(session()->has('success'))
     <div class="flex justify-center items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
       <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -41,9 +42,18 @@
     </div>
     <h2 class="text-center font-semibold text-white mt-[1rem]">Or use your email and password</h2>
     <div class="flex flex-col mt-[1rem]">
-      <input type="email" placeholder="Email" class="bg-transparent rounded-[3rem] px-[1rem] py-[0.5rem] border-[1px] w-[22rem] focus:border-[#02a152] focus:outline-none">
-      <input type="password" placeholder="Password" class="bg-transparent rounded-[3rem] px-[1rem] py-[0.5rem] border-[1px] w-[22rem] mt-[1rem] focus:border-[#02a152] focus:outline-none">
-      <button class="rounded-[3rem] px-[1rem] py-[0.5rem] border-[0.1px] w-[22rem] mt-[1rem] bg-[#02a152] text-white">Sign in</button>
+      
+      <input type="email" name='email' placeholder="Email" class="bg-transparent rounded-[3rem] px-[1rem] py-[0.5rem] border-[1px] w-[22rem] focus:border-[#02a152] focus:outline-none text-white first-letter:@error('email') invalid:border-red-500 @enderror" value={{ old('email') }}  required>
+      @error('email')
+        
+      <p class="text-red-500 ml-1 text-[13px]">{{$message}}</p>
+      @enderror
+      <input type="password" name='password' placeholder="Password" class="bg-transparent rounded-[3rem] px-[1rem] py-[0.5rem] border-[1px] w-[22rem] mt-[1rem] focus:border-[#02a152] focus:outline-none text-white @error('password') invalid:border-red-500 @enderror"   required>
+      @error('password')
+        
+      <p class="text-red-500 ml-1 text-[13px]">{{$message}}</p>
+      @enderror
+      <button class="rounded-[3rem] px-[1rem] py-[0.5rem] border-[0.1px] w-[22rem] mt-[1rem] bg-[#02a152] text-white" type='submit'>Sign in</button>
       <a href="" class="text-center text-white font-normal mt-[0.5rem] underline">Forgot your password?</a>
     </div>
     <p class="text-white font-normal mt-[0.5rem]">Don't have an account? <span class="underline"><a href="">Sign up</a></span></p>
