@@ -8,6 +8,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Article;
 
 /*
@@ -25,11 +26,14 @@ use App\Models\Article;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Login page route
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
-
+Route::post('/logout', [LoginController::class, 'logout']);
+//register
+Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
+//profile
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
 Route::get('/article', [ArticleController::class, 'index'])->name('article');
 Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');

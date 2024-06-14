@@ -46,7 +46,7 @@
         
       <p class="text-red-500 ml-1 text-[13px]">{{$message}}</p>
       @enderror
-      <button type="submit" class="rounded-[3rem] px-[1rem] py-[0.5rem] border-[0.1px] w-[22rem] mt-[1rem] bg-[#02a152] text-white">Register</button>
+      <button type="submit" class="rounded-[3rem] px-[1rem] py-[0.5rem] border-[0.1px] w-[22rem] mt-[1rem] bg-[#02a152] text-white hover:bg-[#43b97e] ease-in-out">Register</button>
        
     </div>
     <p class="text-white font-normal mt-[0.5rem]">Already have an account? <span class="underline"><a href="/login">Sign in</a></span></p>
