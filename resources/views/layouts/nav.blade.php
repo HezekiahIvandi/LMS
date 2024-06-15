@@ -14,7 +14,7 @@
     @auth
     <div id="ddown-container" class="">
         <a id="avatar">
-            <div class="border-[4px] border-[#339966] rounded-[50%]">
+            <div class="border-[2px] border-[#339966] rounded-[50%]">
                 
             <img src="{{url('assets/profile.png')}}" alt="" class="w-[3rem] rounded-[50%]">
             </div>
@@ -25,15 +25,16 @@
             <ul class="py-2 text-sm text-gray-700">
              
               <li>
-                <p class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Welcome back, {{auth()->user()->name}}</p>
+                <p class="block px-4 py-2">Welcome back, {{auth()->user()->name}}</p>
               </li>
             </ul>
             <div class="py-2">
               <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
               <form action="/logout" method="POST" class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                 @csrf
-                <button type="submit" class="">
-                    <p >Log out</p>
+                <button type="submit" class="p-0 w-full flex">
+                    
+                    <p>Log out</p>
                 </button>
               </form>
             </div>
