@@ -39,6 +39,10 @@ Route::get('/article', [ArticleController::class, 'index'])->name('article');
 Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
 Route::delete('/article/destroy/{id}', [ArticleController::class, 'destroy'])->name('article.destroy');
 Route::get('/article/search', [ArticleController::class, 'search'])->name('article.search');
+Route::get('/article/sortasctitle', [ArticleController::class, 'sortAscTitle'])->name('article.sortasctitle');
+Route::get('/article/sortdesctitle', [ArticleController::class, 'sortDescTitle'])->name('article.sortdesctitle');
+Route::get('/article/sortascdate', [ArticleController::class, 'sortAscDate'])->name('article.sortascdate');
+Route::get('/article/sortdescdate', [ArticleController::class, 'sortDescDate'])->name('article.sortdescdate');
 
 Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
 Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.store');

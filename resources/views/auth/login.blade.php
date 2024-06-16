@@ -56,7 +56,7 @@
       <button class="rounded-[3rem] px-[1rem] py-[0.5rem] border-[0.1px] w-[22rem] mt-[1rem] bg-[#02a152] text-white hover:bg-[#43b97e] ease-in-out" type='submit'>Sign in</button>
       <a href="" class="text-center text-white font-normal mt-[0.5rem] underline">Forgot your password?</a>
     </div>
-    <p class="text-white font-normal mt-[0.5rem]">Don't have an account? <span class="underline"><a href="">Sign up</a></span></p>
+    <p class="text-white font-normal mt-[0.5rem]">Don't have an account? <span class="underline"><a href="/register">Sign up</a></span></p>
   </form>
 </body>
 </html>

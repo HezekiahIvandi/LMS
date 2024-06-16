@@ -10,7 +10,7 @@ class ArticleController extends Controller
 {
     // Index
     public function index() {
-        $article = Article::all();
+        $article = Article::orderByDesc('created_at')->get();
 
         return view('article', compact('article'));
     }
@@ -51,8 +51,7 @@ class ArticleController extends Controller
             ->with('success', 'Artikel berhasil di hapus!');
     }
 
-    public function search(Request $request)
-    {
+    public function search(Request $request) {
         $search = $request->get('search');
     
         // Convert the search term to lowercase
@@ -62,6 +61,30 @@ class ArticleController extends Controller
             ->orWhere(DB::raw('lower(article_summary)'), 'like', '%' . $searchLower . '%')
             ->get();
     
+        return view('article', compact('article'));
+    }
+
+    public function sortAscTitle() {
+        $article = Article::orderBy('article_title')->get();
+
+        return view('article', compact('article'));
+    }
+
+    public function sortDescTitle() {
+        $article = Article::orderByDesc('article_title')->get();
+
+        return view('article', compact('article'));
+    } 
+
+    public function sortAscDate() {
+        $article = Article::orderBy('created_at')->get();
+
+        return view('article', compact('article'));
+    }
+
+    public function sortDescDate() {
+        $article = Article::orderByDesc('created_at')->get();
+
         return view('article', compact('article'));
     }
 }

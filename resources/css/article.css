@@ -14,7 +14,7 @@
 }
 
 #article {
-    background-image: linear-gradient(to right top, #046494, #007499, #008391, #008f7e, #339966);
+    background-image: linear-gradient(to left top, #046494, #007499, #008391, #008f7e, #339966);
     width: 100%;
     background-size: cover;
     background-position: center;

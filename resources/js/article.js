@@ -15,4 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
     ancForm.addEventListener('submit', function(event) {
         popup.style.display = 'none';
     });
+
+    const sortBtn = document.getElementById('sort-button');
+    const dropdown = document.getElementById('dropdown-sort');
+    
+    sortBtn.addEventListener('click', function(event) {
+        dropdown.classList.toggle('hidden');
+    });
 })

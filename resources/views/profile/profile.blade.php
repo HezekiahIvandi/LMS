@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @vite('resources/js/profile.js')
 @section('content')
-<div class="pt-[6.3rem] flex h-[37rem]">
+<div class="pt-[6.3rem] flex h-[100vh]">
     <div class="w-1/2 bg-[#02a152]"></div>
     <div class="w-12/ bg-white"></div>
     <div class="absolute inset-0 flex justify-center items-center">
