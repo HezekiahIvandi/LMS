@@ -34,6 +34,7 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register')-
 Route::post('/register', [RegisterController::class, 'store']);
 //profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+Route::post('/profile', [ProfileController::class, 'update'])->middleware('auth');
 
 Route::get('/article', [ArticleController::class, 'index'])->name('article');
 Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
