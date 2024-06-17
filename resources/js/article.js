@@ -22,4 +22,5 @@ document.addEventListener('DOMContentLoaded', function() {
     sortBtn.addEventListener('click', function(event) {
         dropdown.classList.toggle('hidden');
     });
+    
 })

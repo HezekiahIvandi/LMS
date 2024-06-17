@@ -61,7 +61,7 @@
     
     <div id="article-collection" class="mb-8">
         @foreach ($article as $art)
-        <div id="article-card" class="bg-white w-4/5 md:w-4/5 lg:w-3/5 mx-auto rounded-lg p-6 my-8 shadow-md">
+        <div id="article-card" class="bg-white w-4/5 md:w-4/5 lg:w-3/5 mx-auto rounded-lg p-6 my-8 shadow-md cursor-pointer" onclick="handleCardClick(event, '{{ route("article.content", $art->id) }}')">
             <div class="flex">
                 <img src="{{ URL::asset($art->article_image) }}" class="w-60 h-40 rounded-lg">
                 <div class="grid grid-cols-1 ml-8 h-40 place-content-between w-full">
@@ -82,9 +82,15 @@
                     </form>
                 </div>
             </div>
-
         </div>
         @endforeach
     </div>
 </div>
+<script>
+    function handleCardClick(event, route) {
+        if (event.target.tagName !== 'BUTTON') {
+            window.location = route;
+        }
+    }
+</script>
 @endsection

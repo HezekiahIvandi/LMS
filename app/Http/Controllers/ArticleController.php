@@ -12,10 +12,10 @@ class ArticleController extends Controller
     public function index() {
         $article = Article::orderByDesc('created_at')->get();
 
-        return view('article', compact('article'));
+        return view('article.index', compact('article'));
     }
 
-    // Create Article
+    // Membuat Article
     public function store(Request $request) {
         $request->validate([
             'article_title' => 'required',
@@ -32,59 +32,71 @@ class ArticleController extends Controller
                 $article->article_summary = $request->article_summary;
                 $article->article_image = 'storage/' . $imageName;
                 $article->save();
-                return redirect()->route('article')->with('success', 'Artikel baru berhasil ditambahkan.');
+                return redirect()->route('article.index')->with('success', 'Artikel baru berhasil ditambahkan.');
             } else {
-                // Failed to store image
+                // Gagal menyimpan image
                 return redirect()->back()->with('error', 'Failed to store image.');
             }
         } else {
-            // No image uploaded
+            // Tidak ada image
             return redirect()->back()->with('error', 'No image uploaded.');
         }
     }
 
+    // M<enghapus article
     public function destroy($id) {
         $art = Article::find($id);
         $art->delete();
 
-        return redirect()->route('article')
+        return redirect()->route('article.index')
             ->with('success', 'Artikel berhasil di hapus!');
     }
 
+    // Mencari Article
     public function search(Request $request) {
         $search = $request->get('search');
     
-        // Convert the search term to lowercase
+        // Convert isi search bar ke lowercase
         $searchLower = strtolower($search);
     
         $article = Article::where(DB::raw('lower(article_title)'), 'like', '%' . $searchLower . '%')
             ->orWhere(DB::raw('lower(article_summary)'), 'like', '%' . $searchLower . '%')
             ->get();
     
-        return view('article', compact('article'));
+        return view('article.index', compact('article'));
     }
 
+    // Sorting ascending berdasarkan title (A-Z)
     public function sortAscTitle() {
         $article = Article::orderBy('article_title')->get();
 
-        return view('article', compact('article'));
+        return view('article.index', compact('article'));
     }
 
+    // Sorting descending berdasarkan title (Z-A)
     public function sortDescTitle() {
         $article = Article::orderByDesc('article_title')->get();
 
-        return view('article', compact('article'));
+        return view('article.index', compact('article'));
     } 
 
+    // Sorting artikel dari yang terlama
     public function sortAscDate() {
         $article = Article::orderBy('created_at')->get();
 
-        return view('article', compact('article'));
-    }
+        return view('article.index', compact('article'));
+    }  
 
+    // Sorting artikel dari yang terbaru
     public function sortDescDate() {
         $article = Article::orderByDesc('created_at')->get();
 
-        return view('article', compact('article'));
+        return view('article.index', compact('article'));
+    }
+
+    public function content($id) {
+        $article = Article::find($id);
+
+        return view('article.content', compact('article'));
     }
 }
