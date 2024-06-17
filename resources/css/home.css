@@ -109,7 +109,6 @@
 .courses {
     background-color: white;
     width: 300px;
-    height: 250px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -308,7 +307,6 @@
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-gap: 10px;
     margin-top: 50px;
-
 }
 
 #course .courses {
@@ -356,7 +354,7 @@
     font-weight: 600;
     padding: 8px 10px;
     border-radius: 4px;
-    margin-left: 25px;
+    margin-left: 18px;
 }
 
 .edit-course-btn:hover {
@@ -396,7 +394,7 @@
 }
 
 body {
-    margin-bottom: 0; /* Hapus ruang di bawah footer */
+    margin-bottom: 0;
 }
 
 .logo_name {
