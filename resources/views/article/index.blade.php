@@ -12,10 +12,10 @@
             @csrf
             <label for="art-title" class="text-left pb-[10px]">Judul Artikel:</label>
             <input class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" type="text" id="art-title" name="article_title" placeholder="Judul Artikel" required>
-            <label for="article_image" class="text-left pb-[10px]">Gambar Thumbnail Artikel</label>
-            <input type="file" name="article_image" class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" accept="image/*" required>
+            <label for="art-image" class="text-left pb-[10px]">Gambar Thumbnail Artikel</label>
+            <input type="file" name="article_image" id="art-image" class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" accept="image/*" required>
             <label for="art-summary" class="text-left pb-[10px]">Isi Artikel:</label>
-            <textarea class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" name="article_summary" id="art-summary" placeholder="Masukkan is artikel di sini..." required></textarea>
+            <textarea class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px] h-[160px]" name="article_content" id="art-content" placeholder="Masukkan is artikel di sini..." required></textarea>
 
             <button class="mb-[25px] p-[10px] rounded text-[16px] text-white bg-[#006699] hover:bg-[#004466] ease transition cursor-pointer" type="submit">Simpan</button>
         </form>
@@ -61,20 +61,23 @@
     
     <div id="article-collection" class="mb-8">
         @foreach ($article as $art)
-        <div id="article-card" class="bg-white w-4/5 md:w-4/5 lg:w-3/5 mx-auto rounded-lg p-6 my-8 shadow-md cursor-pointer" onclick="handleCardClick(event, '{{ route("article.content", $art->id) }}')">
+        <div id="article-card" class="bg-white w-4/5 md:w-4/5 lg:w-3/5 mx-auto rounded-lg p-6 my-8 shadow-md cursor-pointer" onclick="handleCardClick(event, `{{ route('article.content', $art->id) }}`)">
             <div class="flex">
-                <img src="{{ URL::asset($art->article_image) }}" class="w-60 h-40 rounded-lg">
+                <img src="{{ URL::asset($art->article_image) }}" class="w-48 md:w-60 h-36 md:h-48 rounded-lg object-fill">
                 <div class="grid grid-cols-1 ml-8 h-40 place-content-between w-full">
                     <div>
                         <p class="text-[18px] font-bold">{{ $art->article_title }}</p>
-                        <p class="text-[16px] font-normal">{{ $art->article_summary }}</p>
+                        <p class="text-[16px] font-normal line-clamp-3">{{ $art->article_content }}</p>
                     </div>
-                    <p class="text-right text-[16px] font-normal">{{ $art->created_at}}</p>
+                    <p class="text-right text-[16px] font-normal">{{ $art->created_at->format('d M Y H:i') }}</p>
                 </div>
             </div>
-            <div class="w-full mt-4 flex">
+            <div class="w-full flex">
                 <div class="ml-auto flex">
-                    <button class="text-white bg-[#006699] hover:bg-[#0c374d] ease transition text=[14px] font-semibold py-[8px] px-[10px] rounded mr-[10px]">Sunting Artikel</button>
+                    <form action="{{ route('article.edit', $art->id) }}" method="GET">
+                        @csrf
+                        <button class="text-white bg-[#006699] hover:bg-[#0c374d] ease transition text=[14px] font-semibold py-[8px] px-[10px] rounded mr-[10px]">Sunting Artikel</button>
+                    </form>
                     <form action="{{ route('article.destroy', $art->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus artikel ini?');">
                         @method('delete')
                         @csrf

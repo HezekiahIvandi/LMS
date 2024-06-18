@@ -19,7 +19,7 @@ class ArticleController extends Controller
     public function store(Request $request) {
         $request->validate([
             'article_title' => 'required',
-            'article_summary' => 'required',
+            'article_content' => 'required',
             'article_image' => 'required|image|mimes:jpeg,png,gif|max:2048',
         ]);
 
@@ -29,7 +29,7 @@ class ArticleController extends Controller
                 // Image stored successfully
                 $article = new Article;
                 $article->article_title = $request->article_title;
-                $article->article_summary = $request->article_summary;
+                $article->article_content = $request->article_content;
                 $article->article_image = 'storage/' . $imageName;
                 $article->save();
                 return redirect()->route('article.index')->with('success', 'Artikel baru berhasil ditambahkan.');
@@ -60,7 +60,7 @@ class ArticleController extends Controller
         $searchLower = strtolower($search);
     
         $article = Article::where(DB::raw('lower(article_title)'), 'like', '%' . $searchLower . '%')
-            ->orWhere(DB::raw('lower(article_summary)'), 'like', '%' . $searchLower . '%')
+            ->orWhere(DB::raw('lower(article_content)'), 'like', '%' . $searchLower . '%')
             ->get();
     
         return view('article.index', compact('article'));
@@ -98,5 +98,40 @@ class ArticleController extends Controller
         $article = Article::find($id);
 
         return view('article.content', compact('article'));
+    }
+
+    public function edit($id) {
+        $article = Article::find($id);
+
+        return view('article.edit', compact('article'));
+    }
+
+    public function update(Request $request, $id) {
+        $request->validate([
+            'article_title' => 'required',
+            'article_content' => 'required',
+            'article_image' => 'required|image|mimes:jpeg,png,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('article_image')) {
+            $imageName = time().'.'.$request->article_image->getClientOriginalExtension();
+            if ($request->article_image->storeAs('public', $imageName)) {
+                // Image stored successfully
+                $update = [
+                    'article_title' => $request->article_title,
+                    'article_content' => $request->article_content,
+                    'article_image' => 'storage/' . $imageName,
+                ];
+
+                Article::whereId($id)->update($update);
+                return redirect()->route('article.index')->with('success', 'Artikel baru berhasil ditambahkan.');
+            } else {
+                // Gagal menyimpan image
+                return redirect()->back()->with('error', 'Failed to store image.');
+            }
+        } else {
+            // Tidak ada image
+            return redirect()->back()->with('error', 'No image uploaded.');
+        }
     }
 }

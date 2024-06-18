@@ -45,6 +45,8 @@ Route::get('/article/sortdesctitle', [ArticleController::class, 'sortDescTitle']
 Route::get('/article/sortascdate', [ArticleController::class, 'sortAscDate'])->name('article.sortascdate');
 Route::get('/article/sortdescdate', [ArticleController::class, 'sortDescDate'])->name('article.sortdescdate');
 Route::get('/article/content/{id}', [ArticleController::class, 'content'])->name('article.content');
+Route::get('/article/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit');
+Route::put('/article/update/{id}', [ArticleController::class, 'update'])->name('article.update');
 
 Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
 Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.store');

@@ -15,6 +15,26 @@
     background-position: center;
 }
 
+#article-content {
+    background-image: linear-gradient(to left top, #046494, #007499, #008391, #008f7e, #339966);
+    width: 100%;
+    min-height: 80vh;
+    padding-top: 9rem;
+    padding-bottom: 4rem;
+    background-size: cover;
+    background-position: center;
+}
+
+#article-edit {
+    background-image: linear-gradient(to left top, #046494, #007499, #008391, #008f7e, #339966);
+    width: 100%;
+    min-height: 80vh;
+    padding-top: 9rem;
+    padding-bottom: 4rem;
+    background-size: cover;
+    background-position: center;
+}
+
 #article-card {
     transition: transform 0.2s ease;
 }
