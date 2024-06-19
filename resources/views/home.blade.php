@@ -56,14 +56,29 @@
         @foreach ($article as $art)
         <!-- Membatasi untuk hanya menampilkann 3 artikel -->
         @if ($count < 3) 
-        <div id="article-card" class="bg-white flex w-4/5 md:w-4/5 lg:w-3/5 mx-auto rounded-lg p-6 my-8 shadow-md">
-            <img src="assets\Wikimedia.svg" class="w-40 h-40 rounded-lg">
-            <div class="grid grid-cols-1 ml-8 h-40 place-content-between w-full">
-                <div>
-                    <p class="text-[18px] font-bold">{{ $art->article_title }}</p>
-                    <p class="text-[16px] font-normal">{{ $art-> article_summary }}</p>
+        <div id="article-card" class="bg-white w-4/5 md:w-4/5 lg:w-3/5 mx-auto rounded-lg p-6 my-8 shadow-md cursor-pointer" onclick="handleCardClick(event, `{{ route('article.content', $art->id) }}`)">
+            <div class="flex">
+                <img src="{{ URL::asset($art->article_image) }}" class="w-48 md:w-60 h-36 md:h-48 rounded-lg object-fill">
+                <div class="grid grid-cols-1 ml-8 h-40 place-content-between w-full">
+                    <div>
+                        <p class="text-[18px] font-bold">{{ $art->article_title }}</p>
+                        <p class="text-[16px] font-normal line-clamp-3">{{ $art->article_content }}</p>
+                    </div>
+                    <p class="text-right text-[16px] font-normal">{{ $art->created_at->format('d M Y H:i') }}</p>
                 </div>
-                <p class="text-right text-[16px] font-normal">{{ $art->created_at}}</p>
+            </div>
+            <div class="w-full flex">
+                <div class="ml-auto flex">
+                    <form action="{{ route('article.edit', $art->id) }}" method="GET">
+                        @csrf
+                        <button class="text-white bg-[#006699] hover:bg-[#0c374d] ease transition text=[14px] font-semibold py-[8px] px-[10px] rounded mr-[10px]">Sunting Artikel</button>
+                    </form>
+                    <form action="{{ route('article.destroy', $art->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus artikel ini?');">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="text-white bg-[#339966] hover:bg-[#115734] ease transition text=[14px] font-semibold py-[8px] px-[10px] rounded ">Hapus Artikel</button>
+                    </form>
+                </div>
             </div>
         </div>
         @endif
@@ -100,7 +115,13 @@
             <p class="text-white">Pelatih</p>
         </div>
     </div>
-
-
 </section>
+
+<script>
+    function handleCardClick(event, route) {
+        if (event.target.tagName !== 'BUTTON') {
+            window.location = route;
+        }
+    }
+</script>
 @endsection

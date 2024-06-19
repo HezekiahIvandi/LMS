@@ -149,6 +149,8 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.2s ease;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .courses:hover {

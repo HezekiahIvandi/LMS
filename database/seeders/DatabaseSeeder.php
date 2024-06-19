@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AnnouncementSeeder::class,
             ArticleSeeder::class,
+            CourseSeeder::class,
         ]);
 
     }
