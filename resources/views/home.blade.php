@@ -15,7 +15,12 @@
     <h1>Kursus yang Tersedia</h1>
     <p>WikiLatih Daring adalah program pelatihan penyuntingan di Wikipedia yang diadakan secara daring.</p>
     <div class="course-box">
+        @php
+        $count = 0;
+        @endphp
         @foreach($kursus as $crs)
+        <!-- Membatasi untuk hanya menampilkan 4 kursus -->
+        @if ($count < 4)
         <div class="courses">
             <img src="{{ asset($crs->image_url) }}" alt="">
             <div class="details">
@@ -25,9 +30,19 @@
                 <p>Pelatih: {{ $crs->trainer }}</p>
             </div>
         </div>
+        @php
+        $count++;
+        @endphp
+        @endif
         @endforeach
     </div>
+
+    <!-- Button "Lihat Selengkapnya" -->
+    <div id="full-course" class="text-center mt-4">
+        <a href="{{ route('kursus.index') }}" class="full-course-btn">Lihat Selengkapnya</a>
+    </div>
 </section>
+
 
 <!-- Article -->
 <section id="article" class="py-16 grid grid-cols-1">

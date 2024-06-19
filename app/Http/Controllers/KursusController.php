@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Announcement;
 use App\Models\Kursus;
 
 class KursusController extends Controller
@@ -40,7 +42,14 @@ class KursusController extends Controller
             ->with('success', 'Kursus berhasil di hapus');
     }
 
-    public function edit(Request $request, $id)
+    public function edit($id)
+    {
+        $kursus = Kursus::find($id); 
+        return view('kursus.edit', compact('kursus'));
+    }
+
+
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
@@ -48,15 +57,46 @@ class KursusController extends Controller
             'trainer' => 'required',
         ]);
 
-        $update = [
+        $updateData = [
             'name' => $request->name,
             'image_url' => $request->image_url,
             'trainer' => $request->trainer,
         ];
 
-        Kursus::whereId($id)->update($update);
+        Kursus::whereId($id)->update($updateData);
 
         return redirect()->route('kursus.index')
-            ->with('success', 'Kursus berhasil di perbaharui');
+                         ->with('success', 'Kursus berhasil di perbaharui');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+    
+        // Convert the search term to lowercase
+        $searchLower = strtolower($search);
+    
+        $kursus = Kursus::where(DB::raw('lower(name)'), 'like', '%' . $searchLower . '%')
+            ->orWhere(DB::raw('lower(trainer)'), 'like', '%' . $searchLower . '%')
+            ->get();
+
+    
+        return view('kursus.index', compact('kursus'));
+    }
+
+    public function sort(Request $request)
+    {
+        $category = $request->input('category');
+    
+        if ($category && $category != 'all') {
+            $kursus = Kursus::where('image_url', 'like', '%' . $category . '%')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        } else {
+            $kursus = Kursus::orderBy('created_at', 'desc')->get();
+        }
+    
+        return view('kursus.index', compact('kursus'));
+    }
+    
 }

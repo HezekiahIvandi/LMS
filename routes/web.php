@@ -50,8 +50,13 @@ Route::put('/article/update/{id}', [ArticleController::class, 'update'])->name('
 
 Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
 Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.store');
-Route::put('/kursus/edit/{id}', [KursusController::class, 'edit'])->name('kursus.edit');
+Route::get('/kursus/edit/{id}', [KursusController::class, 'edit'])->name('kursus.edit');
+Route::put('/kursus/update/{id}', [KursusController::class, 'update'])->name('kursus.update');
 Route::delete('/kursus/destroy/{id}', [KursusController::class, 'destroy'])->name('kursus.destroy');
+
+Route::get('/kursus/search', [KursusController::class, 'search'])->name('kursus.search');
+Route::get('/kursus/sort', [KursusController::class, 'sort'])->name('kursus.sort');
+
 
 Route::get('/about', function () {
     return view('about');
@@ -64,6 +69,8 @@ Route::put('/announcement/update/{id}', [AnnouncementController::class, 'update'
 Route::delete('/announcement/destroy/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');
 
 Route::get('/announcement/search', [AnnouncementController::class, 'search'])->name('announcement.search');
+Route::get('/announcement/sort', [AnnouncementController::class, 'sort'])->name('announcement.sort');
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

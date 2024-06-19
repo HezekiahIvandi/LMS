@@ -13,10 +13,10 @@
 
         <label for="title-anc">Judul Pengumuman:</label>
         <input type="text" id="title-anc" name="title_announcement" placeholder="Judul Pengumuman" value="{{ $anc->title_announcement }}" required>
-        
+
         <label for="msg-anc">Pesan:</label>
         <textarea name="announcement" id="msg-anc" placeholder="Masukkan pesan pengumuman di sini..." required>{{ $anc->announcement }}</textarea>
-        
+
         <button type="submit">Simpan</button>
     </form>
 </section>

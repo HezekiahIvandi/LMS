@@ -86,4 +86,12 @@ class AnnouncementController extends Controller
         return view('announcement.index', compact('announcement', 'kursus'));
     }
 
+    public function sort()
+    {
+        $announcement = Announcement::orderBy('created_at', 'desc')->get();
+        $kursus = Kursus::all(); 
+    
+        return view('announcement.index', compact('announcement', 'kursus'));
+    }
+
 }

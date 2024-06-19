@@ -44,8 +44,9 @@
 
         <!-- Fitur Tambahan: Sort -->
         <div class="sort-btn">
-            <button onclick="sortByDate()">Urutkan dari yang terbaru</button>
+            <a href="{{ route('kursus.sort') }}">Urutkan dari yang terbaru</a>
         </div>
+
 
         <div class="fea-base">
             @foreach($announcement as $anc)

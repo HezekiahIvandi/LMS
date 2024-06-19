@@ -2,9 +2,35 @@
 
 @section('content')
     @vite('resources/js/course.js')
-    <section id="anc-hero">
+    <section id="course-hero">
         <h2>Kursus Tersedia</h2>
-        <p>Berisi kursus-kursus tersedia yang dapat Anda ikuti, termasuk <span>WikiLatih Daring</span>, <span>WikiSosial Daring</span>, <span>Magang Wikimedia Indonesia</span>, serta <span>Hibah Wikimedia Indonesia</span>.</p>
+        <p>Wikimedia Indonesia menyediakan berbagai kursus, termasuk
+           <span>WikiLatih Daring</span> yang mengajarkan dasar-dasar penyuntingan,  
+           <span>WikiSosial Daring</span> untuk memperkuat keterampilan sosial, 
+           <span>Magang</span> yang menawarkan pengalaman langsung dalam manajemen proyek Wikimedia, serta program 
+           <span>Hibah</span> hibah untuk mendukung proyek-proyek inovatif.</p>
+           
+           <!-- Fitur Tambahan: Search Bar -->
+        <form class="course-search-form" action="{{ route('kursus.search') }}" method="GET">
+            <input type="text" name="search" placeholder="Cari Kursus...">
+            <button type="submit">Cari</button>
+        </form>
+
+        <!-- Fitur Tambahan: Sort -->
+        <div class="course-sort-btn">
+            <form action="{{ route('kursus.sort') }}" method="GET">
+                <label for="category">Sortir berdasarkan kategori:</label>
+                <select name="category" id="category">
+                    <option value="all">Semua</option>
+                    <option value="WikiLatih">WikiLatih</option>
+                    <option value="WikiSosial">WikiSosial</option>
+                    <option value="Magang">Magang</option>
+                    <option value="Hibah">Hibah</option>
+                </select>
+                <button type="submit">Sortir!</button>
+            </form>
+        </div>
+
     </section>
 
     <!-- Course -->
@@ -43,16 +69,18 @@
             </div>
         </div>
 
-        <p>WikiLatih Daring adalah program pelatihan penyuntingan di Wikipedia yang diadakan secara daring.</p>
+        <p>Menyediakan program-program pelatihan, magang, dan hibah di Wikipedia secara daring.</p>
         <div class="course-box">
             @foreach($kursus as $crs)
                 <div class="courses">
                     <img src="{{ asset($crs->image_url) }}" alt="">
                     <div class="details">
                         <h4>{{ $crs->name }}
-                            <a href="" class="edit-btn">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
+                    
+                                <a href="{{ route('kursus.edit', $crs->id) }}">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                           
                         </h4>
                         <p>Pelatih: {{ $crs->trainer }}</p>
                     </div>

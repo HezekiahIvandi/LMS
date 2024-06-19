@@ -75,6 +75,42 @@
 }
 
 /* Course */
+#course-hero {
+    background-image: url("../../public/assets/bg-course.png");
+    width: 100%;
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+#course-hero h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#course-hero p {
+    width: 50%;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+
+#course-hero span {
+    font-weight: 800;
+}
+
 #course .btn {
     margin-top: 10px;
 }
@@ -670,7 +706,7 @@ body {
 .anc-search-form {
     display: inline-block;
     text-align: right;
-    margin-left: -10px;
+    margin-left: -90px;
     margin-right: 20px;
 }
 
@@ -787,4 +823,119 @@ body {
 
 #trainer-card {
     background-image: linear-gradient(to right top, #046494, #007499, #008391, #008f7e, #339966);
+}
+
+#edit-form-section {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 200px;
+    height: 600px;
+    justify-content: center;
+}
+
+#edit-form-section h2 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: -80px;
+}
+
+#edit-form-section input[type="text"],
+#edit-form-section select,
+#edit-form-section button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+#edit-form-section button {
+    background-color: #006699;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#edit-form-section button:hover {
+    background-color: #004466;
+}
+
+#edit-form-section input:focus,
+#edit-form-section button:focus {
+    outline: none;
+    border-color: #006699;
+    box-shadow: 0 0 5px rgba(0, 102, 153, 0.5);
+}
+
+.course-search-form {
+    display: inline-block;
+    text-align: right;
+    margin-top: 40px;
+    align-items: center;
+}
+
+.course-search-form input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    width: 500px;
+}
+
+.course-search-form button[type="submit"] {
+    padding: 8px 15px;
+    background-color: #006699;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px; /* Atur jarak antara input dan tombol */
+}
+
+.course-search-form button[type="submit"]:hover {
+    background-color: #004466;
+}
+
+.course-sort-btn {
+    margin-top: 20px;
+}
+
+.course-sort-btn label {
+    color: white;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.course-sort-btn button {
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    padding: 6px 13px;
+    margin-top: 20px;
+    background-color: #339966;
+    border-radius: 4px;
+}
+
+.course-sort-btn select {
+    display: inline-block;
+    color: black;
+    font-size: 16px;
+    padding: 6px 6px;
+    margin-top: 20px;
+    margin-right: 10px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.full-course-btn {
+    background-color: #006699;
+    padding: 8px 20px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 4px;
 }
