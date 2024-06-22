@@ -34,7 +34,9 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register')-
 Route::post('/register', [RegisterController::class, 'store']);
 //profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
-Route::post('/profile', [ProfileController::class, 'update'])->middleware('auth');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+Route::put('/profile/editPfp', [ProfileController::class, 'editPfp'])->name('profile.editPfp')->middleware('auth');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware('auth');
 
 Route::get('/article', [ArticleController::class, 'index'])->name('article.index')->middleware('auth');
 Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store')->middleware('auth');

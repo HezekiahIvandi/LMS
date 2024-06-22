@@ -16,9 +16,9 @@
     @auth
     <div id="ddown-container" class="">
         <a id="avatar" class="">
-            <div class="border-[2px] border-[#339966] rounded-[50%] hover:border-[#006699] ease-in-out">
+            <div class="border-[4px] border-[#339966] rounded-[50%] hover:border-[#006699] ease-in-out">
                 
-            <img src="{{ url(Auth::user()->profile_picture_url) }}" alt="" class="w-[3rem] rounded-[50%]">
+            <img src="{{ url(Auth::user()->profile_picture_url) }}" alt="" class="w-[3.4rem] h-[3rem] rounded-[50%] object-cover">
             </div>
         </a>
         

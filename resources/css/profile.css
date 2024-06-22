@@ -1,4 +1,5 @@
-#popup {
+#popup,
+#image-popup {
     position: absolute;
     top: 5%;
     left: 50%;
@@ -8,7 +9,8 @@
     opacity: 0;
 }
 
-#popup.active {
+#popup.active,
+#image-popup.active {
     top: 25%;
     transition: 0.5s;
     visibility: visible;
