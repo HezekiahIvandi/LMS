@@ -53,6 +53,8 @@ Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.s
 Route::get('/kursus/edit/{id}', [KursusController::class, 'edit'])->name('kursus.edit')->middleware('auth');
 Route::put('/kursus/update/{id}', [KursusController::class, 'update'])->name('kursus.update')->middleware('auth');
 Route::delete('/kursus/destroy/{id}', [KursusController::class, 'destroy'])->name('kursus.destroy')->middleware('auth');
+Route::get('/kursus/content/{id}', [KursusController::class, 'content'])->name('kursus.content');
+Route::post('/kursus/content/{id}/store', [KursusController::class, 'contentStore'])->name('kursus.contentstore');
 
 Route::get('/kursus/search', [KursusController::class, 'search'])->name('kursus.search')->middleware('auth');
 Route::get('/kursus/sort', [KursusController::class, 'sort'])->name('kursus.sort')->middleware('auth');
