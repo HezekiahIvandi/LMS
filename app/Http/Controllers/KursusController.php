@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
 use App\Models\Kursus;
+use App\Models\Lessons;
 
 class KursusController extends Controller
 {
@@ -97,6 +98,29 @@ class KursusController extends Controller
         }
     
         return view('kursus.index', compact('kursus'));
+    }
+
+    public function content($id) {
+        $kursus = Kursus::find($id);
+        $lessons = Lessons::where('course_id', $id)->orderBy('lesson_title', 'asc')->get();
+
+        $current_lessons = $lessons->first();
+
+        return view ('kursus.content', compact('kursus', 'lessons', 'current_lessons'));
+    }
+
+    public function contentStore(Request $request, $id) 
+    {
+        $request->validate([
+            'lesson_title' => 'required',
+        ]);
+        
+        $lessons = new Lessons;
+        $lessons->course_id = $id;
+        $lessons->lesson_title = $request->lesson_title;
+        $lessons->save();
+        
+        return redirect()->route('kursus.content', $id);
     }
     
 }

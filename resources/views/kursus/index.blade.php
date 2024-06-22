@@ -72,7 +72,7 @@
         <p>Menyediakan program-program pelatihan, magang, dan hibah di Wikipedia secara daring.</p>
         <div class="course-box">
             @foreach($kursus as $crs)
-                <div class="courses">
+                <div class="courses"  onclick="handleCardClick(event, `{{ route('kursus.content', $crs->id) }}`)">
                     <img src="{{ asset($crs->image_url) }}" alt="">
                     <div class="details">
                         <h4>{{ $crs->name }}
@@ -98,4 +98,11 @@
             @endforeach
         </div>
     </section>
+    <script>
+    function handleCardClick(event, route) {
+        if (event.target.tagName !== 'BUTTON') {
+            window.location = route;
+        }
+    }
+</script>
 @endsection
