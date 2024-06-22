@@ -36,40 +36,40 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::post('/profile', [ProfileController::class, 'update'])->middleware('auth');
 
-Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
-Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
-Route::delete('/article/destroy/{id}', [ArticleController::class, 'destroy'])->name('article.destroy');
-Route::get('/article/search', [ArticleController::class, 'search'])->name('article.search');
-Route::get('/article/sortasctitle', [ArticleController::class, 'sortAscTitle'])->name('article.sortasctitle');
-Route::get('/article/sortdesctitle', [ArticleController::class, 'sortDescTitle'])->name('article.sortdesctitle');
-Route::get('/article/sortascdate', [ArticleController::class, 'sortAscDate'])->name('article.sortascdate');
-Route::get('/article/sortdescdate', [ArticleController::class, 'sortDescDate'])->name('article.sortdescdate');
-Route::get('/article/content/{id}', [ArticleController::class, 'content'])->name('article.content');
-Route::get('/article/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit');
-Route::put('/article/update/{id}', [ArticleController::class, 'update'])->name('article.update');
+Route::get('/article', [ArticleController::class, 'index'])->name('article.index')->middleware('auth');
+Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store')->middleware('auth');
+Route::delete('/article/destroy/{id}', [ArticleController::class, 'destroy'])->name('article.destroy')->middleware('auth');
+Route::get('/article/search', [ArticleController::class, 'search'])->name('article.search')->middleware('auth');
+Route::get('/article/sortasctitle', [ArticleController::class, 'sortAscTitle'])->name('article.sortasctitle')->middleware('auth');
+Route::get('/article/sortdesctitle', [ArticleController::class, 'sortDescTitle'])->name('article.sortdesctitle')->middleware('auth');
+Route::get('/article/sortascdate', [ArticleController::class, 'sortAscDate'])->name('article.sortascdate')->middleware('auth');
+Route::get('/article/sortdescdate', [ArticleController::class, 'sortDescDate'])->name('article.sortdescdate')->middleware('auth');
+Route::get('/article/content/{id}', [ArticleController::class, 'content'])->name('article.content')->middleware('auth');
+Route::get('/article/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit')->middleware('auth');
+Route::put('/article/update/{id}', [ArticleController::class, 'update'])->name('article.update')->middleware('auth');
 
-Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
-Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.store');
-Route::get('/kursus/edit/{id}', [KursusController::class, 'edit'])->name('kursus.edit');
-Route::put('/kursus/update/{id}', [KursusController::class, 'update'])->name('kursus.update');
-Route::delete('/kursus/destroy/{id}', [KursusController::class, 'destroy'])->name('kursus.destroy');
+Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index')->middleware('auth');
+Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.store')->middleware('auth');
+Route::get('/kursus/edit/{id}', [KursusController::class, 'edit'])->name('kursus.edit')->middleware('auth');
+Route::put('/kursus/update/{id}', [KursusController::class, 'update'])->name('kursus.update')->middleware('auth');
+Route::delete('/kursus/destroy/{id}', [KursusController::class, 'destroy'])->name('kursus.destroy')->middleware('auth');
 
-Route::get('/kursus/search', [KursusController::class, 'search'])->name('kursus.search');
-Route::get('/kursus/sort', [KursusController::class, 'sort'])->name('kursus.sort');
+Route::get('/kursus/search', [KursusController::class, 'search'])->name('kursus.search')->middleware('auth');
+Route::get('/kursus/sort', [KursusController::class, 'sort'])->name('kursus.sort')->middleware('auth');
 
 
 Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index');
-Route::post('/announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store');
-Route::get('/mahasiswa/edit/{id}', [AnnouncementController::class, 'edit'])->name('announcement.edit');
-Route::put('/announcement/update/{id}', [AnnouncementController::class, 'update'])->name('announcement.update');
-Route::delete('/announcement/destroy/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy');
+Route::get('/announcement', [AnnouncementController::class, 'index'])->name('announcement.index')->middleware('auth');
+Route::post('/announcement/store', [AnnouncementController::class, 'store'])->name('announcement.store')->middleware('auth');
+Route::get('/mahasiswa/edit/{id}', [AnnouncementController::class, 'edit'])->name('announcement.edit')->middleware('auth');
+Route::put('/announcement/update/{id}', [AnnouncementController::class, 'update'])->name('announcement.update')->middleware('auth');
+Route::delete('/announcement/destroy/{id}', [AnnouncementController::class, 'destroy'])->name('announcement.destroy')->middleware('auth');
 
-Route::get('/announcement/search', [AnnouncementController::class, 'search'])->name('announcement.search');
-Route::get('/announcement/sort', [AnnouncementController::class, 'sort'])->name('announcement.sort');
+Route::get('/announcement/search', [AnnouncementController::class, 'search'])->name('announcement.search')->middleware('auth');
+Route::get('/announcement/sort', [AnnouncementController::class, 'sort'])->name('announcement.sort')->middleware('auth');
 
 
 

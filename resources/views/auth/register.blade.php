@@ -31,12 +31,12 @@
     </div>
     <h2 class="text-center font-semibold text-white mt-[1rem]">Or use your email for registration</h2>
     <div class="flex flex-col mt-[1rem]">
-      <input type="text" placeholder="Username" name="name" class="bg-transparent rounded-[3rem] px-[1rem] py-[0.5rem] border-[1px] w-[22rem] focus:border-[#02a152] focus:outline-none text-white @error('name') invalid:border-red-500 @enderror" value={{old('name')}} required >
+      <input type="text" placeholder="Username" name="name" class="bg-transparent rounded-[3rem] px-[1rem] py-[0.5rem] border-[1px] w-[22rem] focus:border-[#02a152] focus:outline-none text-white @error('name') invalid:border-red-500 @enderror" value="{{old('name')}}" required >
       @error('name')
         
       <p class="text-red-500 ml-1 text-[13px]">{{$message}}</p>
       @enderror
-      <input type="email" placeholder="Email" name="email" class="bg-transparent rounded-[3rem] px-[1rem] py-[0.5rem] border-[1px] w-[22rem] mt-[1rem] focus:border-[#02a152] focus:outline-none text-white @error('email') invalid:border-red-500 @enderror" value={{old('email')}} required>
+      <input type="email" placeholder="Email" name="email" class="bg-transparent rounded-[3rem] px-[1rem] py-[0.5rem] border-[1px] w-[22rem] mt-[1rem] focus:border-[#02a152] focus:outline-none text-white @error('email') invalid:border-red-500 @enderror" value="{{old('email')}}" required>
       @error('email')
         
       <p class="text-red-500 ml-1 text-[13px]">{{$message}}</p>
