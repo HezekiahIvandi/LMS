@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\authController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\KursusController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\LoginController;
@@ -22,7 +22,7 @@ use App\Models\Article;
 |
 */
 
-// Route to display the homepage (kursus page)
+// Route to display the homepage (course page)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Login page route
@@ -50,16 +50,16 @@ Route::get('/article/content/{id}', [ArticleController::class, 'content'])->name
 Route::get('/article/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit')->middleware('auth');
 Route::put('/article/update/{id}', [ArticleController::class, 'update'])->name('article.update')->middleware('auth');
 
-Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index')->middleware('auth');
-Route::post('/kursus/store', [KursusController::class, 'store'])->name('kursus.store')->middleware('auth');
-Route::get('/kursus/edit/{id}', [KursusController::class, 'edit'])->name('kursus.edit')->middleware('auth');
-Route::put('/kursus/update/{id}', [KursusController::class, 'update'])->name('kursus.update')->middleware('auth');
-Route::delete('/kursus/destroy/{id}', [KursusController::class, 'destroy'])->name('kursus.destroy')->middleware('auth');
-Route::get('/kursus/content/{id}', [KursusController::class, 'content'])->name('kursus.content');
-Route::post('/kursus/content/{id}/store', [KursusController::class, 'contentStore'])->name('kursus.contentstore');
+Route::get('/course', [CourseController::class, 'index'])->name('course.index')->middleware('auth');
+Route::post('/course/store', [CourseController::class, 'store'])->name('course.store')->middleware('auth');
+Route::get('/course/edit/{id}', [CourseController::class, 'edit'])->name('course.edit')->middleware('auth');
+Route::put('/course/update/{id}', [CourseController::class, 'update'])->name('course.update')->middleware('auth');
+Route::delete('/course/destroy/{id}', [CourseController::class, 'destroy'])->name('course.destroy')->middleware('auth');
+Route::get('/course/content/{id}', [CourseController::class, 'content'])->name('course.content');
+Route::post('/course/content/{id}/store', [CourseController::class, 'contentStore'])->name('course.contentstore');
 
-Route::get('/kursus/search', [KursusController::class, 'search'])->name('kursus.search')->middleware('auth');
-Route::get('/kursus/sort', [KursusController::class, 'sort'])->name('kursus.sort')->middleware('auth');
+Route::get('/course/search', [CourseController::class, 'search'])->name('course.search')->middleware('auth');
+Route::get('/course/sort', [CourseController::class, 'sort'])->name('course.sort')->middleware('auth');
 
 
 Route::get('/about', function () {

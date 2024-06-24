@@ -5,7 +5,7 @@
         <ul>
             <li><a href="/" class="{{ Request::is('/') ? 'text-[#006699]' : '' }}">Beranda</a></li>
             @auth
-            <li><a href="{{ route('kursus.index') }}" class="{{ Request::routeIs('kursus.index') ? 'text-[#006699]' : '' }}">Kursus</a></li>
+            <li><a href="{{ route('course.index') }}" class="{{ Request::routeIs('course.index') ? 'text-[#006699]' : '' }}">Kursus</a></li>
             <li><a href="/article" class="{{ Request::is('article') ? 'text-[#006699]' : '' }}">Artikel</a></li>
             <li><a href="{{ route('announcement.index') }}" class="{{ Request::routeIs('announcement.index') ? 'text-[#006699]' : '' }}">Pengumuman</a></li>
             @endauth

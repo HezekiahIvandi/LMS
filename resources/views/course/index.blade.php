@@ -11,14 +11,14 @@
            <span>Hibah</span> hibah untuk mendukung proyek-proyek inovatif.</p>
            
            <!-- Fitur Tambahan: Search Bar -->
-        <form class="course-search-form" action="{{ route('kursus.search') }}" method="GET">
+        <form class="course-search-form" action="{{ route('course.search') }}" method="GET">
             <input type="text" name="search" placeholder="Cari Kursus...">
             <button type="submit">Cari</button>
         </form>
 
         <!-- Fitur Tambahan: Sort -->
         <div class="course-sort-btn">
-            <form action="{{ route('kursus.sort') }}" method="GET">
+            <form action="{{ route('course.sort') }}" method="GET">
                 <label for="category">Sortir berdasarkan kategori:</label>
                 <select name="category" id="category">
                     <option value="all">Semua</option>
@@ -41,17 +41,17 @@
             <div class="popup-content">
                 <span class="close-btn">&times;</span>
                 <h2>Menambahkan Kursus Baru</h2>
-                <form id="course-form" action="{{ route('kursus.store') }}" method="POST">
+                <form id="course-form" action="{{ route('course.store') }}" method="POST">
                 @csrf
                 <input type="text" id="course-name" name="name" placeholder="Nama Kursus" required>
                 <label for="course-img">Gambar Kursus:</label>
                 <div class="image-options">
-                    <input type="radio" id="kursus-wikilatih" name="image_url" value="assets/Kursus WikiLatih.png" required>
-                    <label for="kursus-wikilatih">
+                    <input type="radio" id="course-wikilatih" name="image_url" value="assets/Kursus WikiLatih.png" required>
+                    <label for="course-wikilatih">
                         <img src="assets/Kursus WikiLatih.png" alt="Kursus WikiLatih">
                     </label>
-                    <input type="radio" id="kursus-wikisosial" name="image_url" value="assets/Kursus WikiSosial.png" required>
-                    <label for="kursus-wikisosial">
+                    <input type="radio" id="course-wikisosial" name="image_url" value="assets/Kursus WikiSosial.png" required>
+                    <label for="course-wikisosial">
                         <img src="assets/Kursus WikiSosial.png" alt="Kursus WikiSosial">
                     </label>
                     <input type="radio" id="magang-wmid" name="image_url" value="assets/Magang WMID.png" required>
@@ -71,13 +71,13 @@
 
         <p>Menyediakan program-program pelatihan, magang, dan hibah di Wikipedia secara daring.</p>
         <div class="course-box">
-            @foreach($kursus as $crs)
-                <div class="courses"  onclick="handleCardClick(event, `{{ route('kursus.content', $crs->id) }}`)">
+            @foreach($course as $crs)
+                <div class="courses"  onclick="handleCardClick(event, `{{ route('course.content', $crs->id) }}`)">
                     <img src="{{ asset($crs->image_url) }}" alt="">
                     <div class="details">
                         <h4>{{ $crs->name }}
                     
-                                <a href="{{ route('kursus.edit', $crs->id) }}">
+                                <a href="{{ route('course.edit', $crs->id) }}">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                            
@@ -87,7 +87,7 @@
 
                     <div class="btn-container">
                         <a class="edit-course-btn" href="#">Tambah Materi</a>
-                        <form action="{{ route('kursus.destroy', $crs->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus kursus ini?');">
+                        <form action="{{ route('course.destroy', $crs->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus kursus ini?');">
                             @method('delete')
                             @csrf
                             <button type="submit" class="delete-course-btn">Hapus Kursus</button>

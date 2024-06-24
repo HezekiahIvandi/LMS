@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
-use App\Models\Kursus;
+use App\Models\Course;
 
 class HomeController extends Controller
 {
     public function index() 
     {
-        $kursus = Kursus::all();
+        $course = Course::all();
         $article = Article::all();
 
-        return view('home', compact('kursus', 'article'));
+        return view('home', compact('course', 'article'));
     }
 }

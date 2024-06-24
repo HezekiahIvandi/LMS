@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
-use App\Models\Kursus;
+use App\Models\Course;
 use App\Models\Lessons;
 
-class KursusController extends Controller
+class CourseController extends Controller
 {
     public function index() 
     {
-        $kursus = Kursus::all();
+        $course = Course::all();
 
-        return view('kursus.index', compact('kursus'));
+        return view('course.index', compact('course'));
     }
 
     public function store(Request $request) 
@@ -25,28 +25,28 @@ class KursusController extends Controller
             'trainer' => 'required',
         ]);
         
-        $kursus = new Kursus;
-        $kursus->name = $request->name;
-        $kursus->image_url = $request->image_url;
-        $kursus->trainer = $request->trainer;
-        $kursus->save();
+        $course = new Course;
+        $course->name = $request->name;
+        $course->image_url = $request->image_url;
+        $course->trainer = $request->trainer;
+        $course->save();
         
-        return redirect()->route('kursus.index')
-            ->with('success', 'Kursus baru berhasil ditambahkan.');
+        return redirect()->route('course.index')
+            ->with('success', 'Course baru berhasil ditambahkan.');
     }
 
     public function destroy($id) 
     {
-        $crs = Kursus::find($id);
+        $crs = Course::find($id);
         $crs->delete();
-        return redirect()->route('kursus.index')
-            ->with('success', 'Kursus berhasil di hapus');
+        return redirect()->route('course.index')
+            ->with('success', 'Course berhasil di hapus');
     }
 
     public function edit($id)
     {
-        $kursus = Kursus::find($id); 
-        return view('kursus.edit', compact('kursus'));
+        $course = Course::find($id); 
+        return view('course.edit', compact('course'));
     }
 
 
@@ -64,10 +64,10 @@ class KursusController extends Controller
             'trainer' => $request->trainer,
         ];
 
-        Kursus::whereId($id)->update($updateData);
+        Course::whereId($id)->update($updateData);
 
-        return redirect()->route('kursus.index')
-                         ->with('success', 'Kursus berhasil di perbaharui');
+        return redirect()->route('course.index')
+                         ->with('success', 'Course berhasil di perbaharui');
     }
 
     public function search(Request $request)
@@ -77,12 +77,12 @@ class KursusController extends Controller
         // Convert the search term to lowercase
         $searchLower = strtolower($search);
     
-        $kursus = Kursus::where(DB::raw('lower(name)'), 'like', '%' . $searchLower . '%')
+        $course = Course::where(DB::raw('lower(name)'), 'like', '%' . $searchLower . '%')
             ->orWhere(DB::raw('lower(trainer)'), 'like', '%' . $searchLower . '%')
             ->get();
 
     
-        return view('kursus.index', compact('kursus'));
+        return view('course.index', compact('course'));
     }
 
     public function sort(Request $request)
@@ -90,23 +90,23 @@ class KursusController extends Controller
         $category = $request->input('category');
     
         if ($category && $category != 'all') {
-            $kursus = Kursus::where('image_url', 'like', '%' . $category . '%')
+            $course = Course::where('image_url', 'like', '%' . $category . '%')
                             ->orderBy('created_at', 'desc')
                             ->get();
         } else {
-            $kursus = Kursus::orderBy('created_at', 'desc')->get();
+            $course = Course::orderBy('created_at', 'desc')->get();
         }
     
-        return view('kursus.index', compact('kursus'));
+        return view('course.index', compact('course'));
     }
 
     public function content($id) {
-        $kursus = Kursus::find($id);
+        $course = Course::find($id);
         $lessons = Lessons::where('course_id', $id)->orderBy('lesson_title', 'asc')->get();
 
         $current_lessons = $lessons->first();
 
-        return view ('kursus.content', compact('kursus', 'lessons', 'current_lessons'));
+        return view ('course.content', compact('course', 'lessons', 'current_lessons'));
     }
 
     public function contentStore(Request $request, $id) 
@@ -120,7 +120,7 @@ class KursusController extends Controller
         $lessons->lesson_title = $request->lesson_title;
         $lessons->save();
         
-        return redirect()->route('kursus.content', $id);
+        return redirect()->route('course.content', $id);
     }
     
 }

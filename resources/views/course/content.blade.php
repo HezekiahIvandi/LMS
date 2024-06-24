@@ -6,7 +6,7 @@
     <div class="absolute top-[50%] left-[50%] bg-white bg-opacity-100 translate-x-[-50%] translate-y-[-50%] px-[30px] pt-[50px] pb-[10px] shadow-md shadow-black w-[500px]">
         <span id="close-btn" class="absolute top-[10px] right-[10px] cursor-pointer text-[24px] font-extrabold">&times;</span>
         <h2 class="pb-[20px] text-[20px] font-bold text-center">Menambahkan Pelajaran</h2>
-        <form class="flex flex-col" id="lsn-form" action="{{ route('kursus.contentstore', $kursus->id ) }}" method="POST" enctype="multipart/form-data">
+        <form class="flex flex-col" id="lsn-form" action="{{ route('course.contentstore', $course->id ) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="lsn-title" class="text-left pb-[10px]">Judul Pelajaran:</label>
             <input class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" type="text" id="lsn-title" name="lesson_title" placeholder="Judul Artikel" required>
@@ -15,9 +15,9 @@
     </div>
 </div>
 
-<div id="kursus-content" class="h-[100vh] pt-[100px] flex">
+<div id="course-content" class="h-[100vh] pt-[100px] flex">
     <div class="bg-gradient-to-r from-[#046494] to-[#339966] w-[300px] h-[100%] text-white">
-        <h1 class="text-center py-4 font-bold text-[18px] border-b-2 border-white">{{ $kursus->name }}</h1>
+        <h1 class="text-center py-4 font-bold text-[18px] border-b-2 border-white">{{ $course->name }}</h1>
         <h1 class="text-left pl-4 py-2 font-semibold text-[16px] border-b-2 border-white">Daftar Pelajaran</h1>
         @foreach($lessons as $lsn)
             <button class="pl-4 py-2 w-full border-b-2 border-white text-left">{{ $lsn->lesson_title }}</button>

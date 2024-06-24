@@ -18,7 +18,7 @@
         @php
         $count = 0;
         @endphp
-        @foreach($kursus as $crs)
+        @foreach($course as $crs)
         <!-- Membatasi untuk hanya menampilkan 4 kursus -->
         @if ($count < 4)
         <div class="courses">
@@ -39,7 +39,7 @@
 
     <!-- Button "Lihat Selengkapnya" -->
     <div id="full-course" class="text-center mt-4">
-        <a href="{{ route('kursus.index') }}" class="full-course-btn">Lihat Selengkapnya</a>
+        <a href="{{ route('course.index') }}" class="full-course-btn">Lihat Selengkapnya</a>
     </div>
 </section>
 

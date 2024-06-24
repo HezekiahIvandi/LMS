@@ -13,7 +13,7 @@ class CourseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('kursus')->insert([
+        DB::table('course')->insert([
             [
                 'name' => 'WikiLatih Daring #20',
                 'image_url' => 'assets/Kursus WikiLatih.png',

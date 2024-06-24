@@ -6,7 +6,7 @@
         @csrf
         <label for="course-name">Berkaitan dengan kursus:</label>
         <select name="course_name" id="course-name" required>
-            @foreach($kursus as $crs)
+            @foreach($course as $crs)
                 <option value="{{ $crs->name }}">{{ $crs->name }}</option>
             @endforeach
         </select>
