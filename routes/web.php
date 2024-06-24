@@ -55,8 +55,11 @@ Route::post('/course/store', [CourseController::class, 'store'])->name('course.s
 Route::get('/course/edit/{id}', [CourseController::class, 'edit'])->name('course.edit')->middleware('auth');
 Route::put('/course/update/{id}', [CourseController::class, 'update'])->name('course.update')->middleware('auth');
 Route::delete('/course/destroy/{id}', [CourseController::class, 'destroy'])->name('course.destroy')->middleware('auth');
-Route::get('/course/content/{id}', [CourseController::class, 'content'])->name('course.content');
-Route::post('/course/content/{id}/store', [CourseController::class, 'contentStore'])->name('course.contentstore');
+Route::get('/course/content/{id}', [CourseController::class, 'content'])->name('course.content')->middleware('auth');;
+Route::post('/course/content/{id}/store', [CourseController::class, 'contentStore'])->name('course.contentstore')->middleware('auth');;
+Route::get('/course/content/{id}/{current}', [CourseController::class, 'contentSelect'])->name('course.contentselect')->middleware('auth');;
+Route::delete('/course/content/{id}/destroy/{lesson}', [CourseController::class, 'contentDestroy'])->name('course.contentdestroy')->middleware('auth');
+Route::put('/course/content/{id}/update', [CourseController::class, 'contentUpdate'])->name('course.contentupdate')->middleware('auth');
 
 Route::get('/course/search', [CourseController::class, 'search'])->name('course.search')->middleware('auth');
 Route::get('/course/sort', [CourseController::class, 'sort'])->name('course.sort')->middleware('auth');

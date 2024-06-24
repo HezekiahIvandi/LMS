@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="btn-container">
-                        <a class="edit-course-btn" href="#">Tambah Materi</a>
+                        <a class="edit-course-btn">Tambah Materi</a>
                         <form action="{{ route('course.destroy', $crs->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus kursus ini?');">
                             @method('delete')
                             @csrf

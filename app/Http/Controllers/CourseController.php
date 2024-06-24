@@ -122,5 +122,35 @@ class CourseController extends Controller
         
         return redirect()->route('course.content', $id);
     }
+
+    public function contentSelect($id, $current) {
+        $course = Course::find($id);
+        $lessons = Lessons::where('course_id', $id)->orderBy('lesson_title', 'asc')->get();
+
+        $current_lessons = Lessons::find($current);
+
+        return view ('course.content', compact('course', 'lessons', 'current_lessons'));
+    }
+
+    public function contentDestroy($id, $lesson) {
+        $lesson = Lessons::find($lesson);
+        $lesson->delete();
+        return redirect()->route('course.content', $id);
+    }
+
+    public function contentUpdate(Request $request, $id) {
+        $request->validate([
+            'lesson_id' => 'required',
+            'lesson_title' => 'required',
+        ]);
+
+        $updateData = [
+            'lesson_title' => $request->lesson_title,
+        ];
+
+        Lessons::whereId($request->lesson_id)->update($updateData);
+
+        return redirect()->route('course.content', $id);
+    }
     
 }
