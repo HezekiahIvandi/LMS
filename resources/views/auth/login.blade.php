@@ -20,7 +20,7 @@
       </div>
     </div>
     @endif
-    <h1 class="text-center text-white font-bold text-[1.7em]">Sign in</h1>
+    <h1 class="text-center text-white font-bold text-[1.7em]">Masuk</h1>
     <div class="flex justify-evenly mt-[1rem] px-[3rem]">
       <div class="rounded-[1rem] border-[1px] p-[0.5rem] bg-transparent cursor-pointer">
 
@@ -40,7 +40,7 @@
       </div>
   
     </div>
-    <h2 class="text-center font-semibold text-white mt-[1rem]">Or use your email and password</h2>
+    <h2 class="text-center font-semibold text-white mt-[1rem]">Atau gunakan email dan password</h2>
     <div class="flex flex-col mt-[1rem]">
       
       <input type="email" name='email' placeholder="Email" class="bg-transparent rounded-[3rem] px-[1rem] py-[0.5rem] border-[1px] w-[22rem] focus:border-[#02a152] focus:outline-none text-white first-letter:@error('email') invalid:border-red-500 @enderror" value="{{ old('email') }}"  required>
@@ -53,10 +53,10 @@
         
       <p class="text-red-500 ml-1 text-[13px]">{{$message}}</p>
       @enderror
-      <button class="rounded-[3rem] px-[1rem] py-[0.5rem] border-[0.1px] w-[22rem] mt-[1rem] bg-[#02a152] text-white hover:bg-[#43b97e] ease-in-out" type='submit'>Sign in</button>
-      <a href="" class="text-center text-white font-normal mt-[0.5rem] underline">Forgot your password?</a>
+      <button class="rounded-[3rem] px-[1rem] py-[0.5rem] border-[0.1px] w-[22rem] mt-[1rem] bg-[#02a152] text-white hover:bg-[#43b97e] ease-in-out" type='submit'>Masuk</button>
+      <a href="" class="text-center text-white font-normal mt-[0.5rem] underline">Lupa password?</a>
     </div>
-    <p class="text-white font-normal mt-[0.5rem]">Don't have an account? <span class="underline"><a href="/register">Sign up</a></span></p>
+    <p class="text-white font-normal mt-[0.5rem]">Tidak punya akun? <span class="underline"><a href="/register">Daftar</a></span></p>
   </form>
 </body>
 </html>

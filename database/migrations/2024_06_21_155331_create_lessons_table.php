@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('course_id');
             $table->string('lesson_title');
+            $table->longtext('text_content')->default('Konten teks');
+            $table->string('file_content_url')->nullable();
+            $table->string('video_content_url')->nullable();
             $table->timestamps();
         });
     }

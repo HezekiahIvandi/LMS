@@ -12,6 +12,9 @@ class Lessons extends Model
     protected $fillable = [
         'course_id',
         'lesson_title',
+        'text_content',
+        'file_content_url',
+        'video_content_url'
     ];
 
     protected $table = 'lessons';

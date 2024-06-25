@@ -25,12 +25,20 @@
             <input type="hidden" id="edit-lsn-id" name="lesson_id">
             <label for="edit-lsn-title" class="text-left pb-[10px]">Judul Pelajaran:</label>
             <input class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" type="text" id="edit-lsn-title" name="lesson_title" placeholder="Judul Pelajaran" required>
+            <label for="edit-lsn-title" class="text-left pb-[10px]">File:</label>
+            <input class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" type="File" id="edit-lsn-file" name="file_content_url" placeholder="Pilih file">
+            <label for="edit-lsn-title" class="text-left pb-[10px]">Video:</label>
+            <input class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" type="File" id="edit-lsn-video" name="video_content_url" placeholder="Pilih file">
+            <label for="edit-lsn-title" class="text-left pb-[10px]">Konten teks:</label>
+            <textarea class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px] max-h-[10rem]" id="edit-lsn-text" name="text_content" placeholder="@isset($current_lessons){{ $current_lessons->text_content }}@endisset" required>@isset($current_lessons){{ $current_lessons->text_content }}@endisset</textarea>
+
             <button class="mb-[25px] p-[10px] rounded text-[16px] text-white bg-[#006699] hover:bg-[#004466] ease transition cursor-pointer" type="submit">Simpan</button>
         </form>
     </div>
 </div>
 
-<div id="course-content" class="h-[100vh] pt-[100px] flex">
+
+<div id="course-content" class="h-[100%] py-[100px] flex">
     <div class="bg-gradient-to-r from-[#046494] to-[#339966] w-[300px] h-[100%] text-white">
         <h1 class="text-center py-4 font-bold text-[18px] border-b-2 border-white">{{ $course->name }}</h1>
         <h1 class="text-left pl-4 py-2 font-semibold text-[16px] border-b-2 border-white">Daftar Pelajaran</h1>
@@ -49,6 +57,9 @@
         @endforeach
         <button class="pl-4 py-2 w-full border-b-2 border-white font-bold" id="add-btn">+</button>
     </div>
+
+
+    @if($current_lessons != null)
     <div class="w-full h-full pt-6 px-8">
         <h1 class="text-center font-extrabold text-[20px]">
             @if ($current_lessons != null)
@@ -57,8 +68,38 @@
                 Judul Pelajaran
             @endif
         </h1>
-        <p class="text-justify mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p class="text-justify mt-4">
+            @if ($current_lessons != null)
+                {{$current_lessons -> text_content}}
+            @else
+                Teks konten
+            @endif
+        </p>
+
+       
+        @if ($current_lessons->file_content_url != null)
+        <iframe class="mt-[1rem]" src="{{ url($current_lessons->file_content_url) }}" style="width:100%; height:600px;" frameborder="0"></iframe>
+        @else
+                <h1>File belum di upload</h1>
+        @endif
+
+        @if ($current_lessons->video_content_url != null)
+        <div class="mt-[1rem] flex w-full">
+            <video  controls>
+                <source src="{{ url($current_lessons->video_content_url) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        @else
+                <h1>Video belum di upload</h1>
+        @endif
     </div>
+    
+@else
+<h1 class=" text-[30px] text-center ml-5">
+    Lesson Kosong
+</h1>
+@endif
 </div>
 
 <script>

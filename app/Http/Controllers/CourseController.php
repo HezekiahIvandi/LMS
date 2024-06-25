@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
 use App\Models\Course;
@@ -139,14 +140,38 @@ class CourseController extends Controller
     }
 
     public function contentUpdate(Request $request, $id) {
+        $lesson = Lessons::find($id);
+
         $request->validate([
             'lesson_id' => 'required',
             'lesson_title' => 'required',
+            'text_content' => 'required',
+            'file_content_url' => ['nullable', 'mimes:pdf,ppt,pptx,doc,docx'],
+            'video_content_url' => ['nullable', 'mimes:mp4'],
         ]);
 
         $updateData = [
             'lesson_title' => $request->lesson_title,
+            'text_content' => $request->text_content,
         ];
+
+        if( $request->hasFile('file_content_url') ) {
+            $filePath = $request->file('file_content_url')->store('LessonFiles','public');
+            $filePath = 'storage/'.$filePath;
+            $updateData['file_content_url'] = $filePath;
+            if($lesson->file_content_url != null){
+                Storage::disk('public')->delete($lesson->file_content_url);
+            }
+        }
+
+        if( $request->hasFile('video_content_url') ) {
+            $filePathVid = $request->file('video_content_url')->store('LessonVideo','public');
+            $filePathVid = 'storage/'.$filePathVid;
+            $updateData['video_content_url'] = $filePathVid;
+            if($lesson->video_content_url != null){
+                Storage::disk('public')->delete($lesson->video_content_url);
+            }
+        }
 
         Lessons::whereId($request->lesson_id)->update($updateData);
 
