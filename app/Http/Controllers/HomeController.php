@@ -8,6 +8,7 @@ use App\Models\Course;
 
 class HomeController extends Controller
 {
+    // Menampilkan halaman utama dengan daftar semua course dan artikel.
     public function index() 
     {
         $course = Course::all();

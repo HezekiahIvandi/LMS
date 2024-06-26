@@ -9,11 +9,13 @@ class Course extends Model
 {
     use HasFactory;
 
+    // Menentukan atribut yang dapat diisi secara massal
     protected $fillable = [
-        'name',
-        'image_url',
-        'trainer',
+        'name',       // Nama kursus
+        'image_url',  // URL gambar kursus
+        'trainer',    // Pelatih kursus
     ];
 
+    // Menentukan tabel yang terkait dengan model ini
     protected $table = 'course';
 }

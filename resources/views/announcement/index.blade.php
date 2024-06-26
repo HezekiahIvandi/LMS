@@ -7,47 +7,53 @@
         <p>Berisi pengumuman-pengumuman penting yang perlu Anda ketahui, termasuk <span>peluncuran kursus baru</span>, <span>jadwal webinar dan lokakarya</span>, <span>kompetisi penyuntingan</span>, serta <span>panduan dan dukungan</span>.</p>
     </section>
 
-    <!-- Pop Up -->
+    <!-- Pop Up untuk menambahkan pengumuman baru -->
     <div class="popup">
         <div class="popup-content">
             <span class="close-btn">&times;</span>
             <h2>Menambahkan Pengumuman Baru</h2>
             <form id="anc-form" action="{{ route('announcement.store') }}" method="POST">
                 @csrf
-                <label for="course-name">Berkaitan dengan kursus:</label>
+                <!-- Dropdown untuk memilih kursus yang terkait dengan pengumuman -->
+                <label for="course-name">Berkaitan dengan Kursus:</label>
                 <select name="course_name" id="course-name" required>
-                    @foreach($course as $crs)
+                    @php
+                        $sortedCourses = $course->sortBy('name'); // Mengurutkan kursus berdasarkan nama
+                    @endphp
+                    @foreach($sortedCourses as $crs)
                         <option value="{{ $crs->name }}">{{ $crs->name }}</option>
                     @endforeach
                 </select>
 
+                <!-- Input teks untuk judul pengumuman -->
                 <label for="title-anc">Judul Pengumuman:</label>
                 <input type="text" id="title-anc" name="title_announcement" placeholder="Judul Pengumuman" required>
                 
+                <!-- Textarea untuk pesan pengumuman -->
                 <label for="msg-anc">Pesan:</label>
                 <textarea name="announcement" id="msg-anc" placeholder="Masukkan pesan pengumuman di sini..." required></textarea>
                 
-                <button type="submit">Simpan</button>
+                <button type="submit">Simpan</button> <!-- Tombol untuk menyimpan pengumuman baru -->
             </form>
         </div>
     </div>
     
-    <!-- Program -->
+    <!-- Bagian untuk menampilkan pengumuman -->
     <section id="announcement">
         <h1>Pengumuman Penting <span><button class="add-btn">+</button></span></h1>
         
-        <!-- Fitur Tambahan: Search Bar -->
+        <!-- Fitur tambahan: Search Bar -->
         <form class="anc-search-form" action="{{ route('announcement.search') }}" method="GET">
             <input type="text" name="search" placeholder="Cari Pengumuman...">
             <button type="submit">Cari</button>
         </form>
 
-        <!-- Fitur Tambahan: Sort -->
+        <!-- Fitur tambahan: Sort -->
         <div class="sort-btn">
-            <a href="{{ route('course.sort') }}">Urutkan dari yang terbaru</a>
+            <a href="{{ route('announcement.sort') }}">Urutkan dari yang terbaru</a>
         </div>
 
-
+        <!-- Daftar pengumuman -->
         <div class="fea-base">
             @foreach($announcement as $anc)
                 <div class="fea-box">
@@ -69,11 +75,12 @@
                             $altText = "Hibah WMID";
                         }
                     @endphp
-                    <i><img src="{{ URL::asset($imageSrc) }}" alt="{{ $altText }}"></i>
-                    <div class="announcement-date">{{ $anc->created_at->format('d M Y H:i') }}</div>
-                    <h3>{{ $anc->title_announcement }}</h3>
-                    <p>{{ $anc->announcement }}</p>
+                    <i><img src="{{ URL::asset($imageSrc) }}" alt="{{ $altText }}"></i> <!-- Gambar kursus -->
+                    <div class="announcement-date">{{ $anc->created_at->format('d M Y H:i') }}</div> <!-- Tanggal pengumuman -->
+                    <h3>{{ $anc->title_announcement }}</h3> <!-- Judul pengumuman -->
+                    <p>{{ $anc->announcement }}</p> <!-- Isi pengumuman -->
 
+                    <!-- Tombol untuk menyunting dan menghapus pengumuman -->
                     <div class="btn-container">
                         <a href="{{ route('announcement.edit', $anc->id) }}" class="edit-anc-btn">
                             Sunting Pengumuman

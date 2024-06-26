@@ -6,6 +6,7 @@
         @csrf
         <input type="text" id="course_name" name="name" placeholder="Nama Kursus" value="{{ $course->course_name }}" required>
 
+        <!-- Pilihan gambar kursus -->
         <label for="course-img">Gambar Kursus:</label>
             <div class="image-options">
                 <input type="radio" id="course-wikilatih" name="image_url" value="assets/Kursus WikiLatih.png" required>

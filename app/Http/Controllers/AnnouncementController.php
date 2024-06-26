@@ -9,6 +9,7 @@ use App\Models\Course;
 
 class AnnouncementController extends Controller
 {
+    // Menampilkan semua pengumuman beserta daftar course.
     public function index() 
     {
         $announcement = Announcement::all();
@@ -17,6 +18,7 @@ class AnnouncementController extends Controller
         return view('announcement.index', compact('announcement', 'course'));
     }
 
+    // Menyimpan pengumuman baru ke dalam database.
     public function store(Request $request) 
     {
         $request->validate([
@@ -35,15 +37,17 @@ class AnnouncementController extends Controller
             ->with('success', 'Pengumuman baru berhasil ditambahkan!');
     }
 
+    // Menghapus pengumuman dari database.
     public function destroy($id) 
     {
         $anc = Announcement::find($id);
         $anc->delete();
 
         return redirect()->route('announcement.index')
-            ->with('success', 'Pengumuman berhasil di hapus!');
+            ->with('success', 'Pengumuman berhasil dihapus!');
     }
 
+    // Menampilkan form untuk mengedit pengumuman.
     public function edit($id)
     {
         $anc = Announcement::find($id);
@@ -52,6 +56,7 @@ class AnnouncementController extends Controller
         return view('announcement.edit', compact('anc', 'course'));
     }
 
+    // Memperbarui pengumuman yang ada di database.
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -69,9 +74,10 @@ class AnnouncementController extends Controller
         Announcement::whereId($id)->update($update);
 
         return redirect()->route('announcement.index')
-            ->with('success', 'Pengumuman berhasil di perbaharui!');
+            ->with('success', 'Pengumuman berhasil diperbarui!');
     }
 
+    // Mencari pengumuman berdasarkan judul atau isi pengumuman.
     public function search(Request $request)
     {
         $search = $request->get('search');
@@ -86,6 +92,7 @@ class AnnouncementController extends Controller
         return view('announcement.index', compact('announcement', 'course'));
     }
 
+    // Menampilkan pengumuman yang diurutkan berdasarkan tanggal pembuatan secara descending.
     public function sort()
     {
         $announcement = Announcement::orderBy('created_at', 'desc')->get();

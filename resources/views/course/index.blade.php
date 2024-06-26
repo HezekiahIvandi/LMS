@@ -95,6 +95,7 @@
                     
                     </div>
                 </div>
+                <!-- Klik pada kartu untuk pergi ke halaman konten kursus -->
             @endforeach
         </div>
     </section>
