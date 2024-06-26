@@ -38,8 +38,8 @@
 </div>
 
 
-<div id="course-content" class="h-[100%] py-[100px] flex">
-    <div class="bg-gradient-to-r from-[#046494] to-[#339966] w-[300px] h-[100%] text-white">
+<div id="course-content" class="min-h-[80vh] pt-[100px] flex">
+    <div class="bg-gradient-to-r from-[#046494] to-[#339966] w-[300px] text-white">
         <h1 class="text-center py-4 font-bold text-[18px] border-b-2 border-white">{{ $course->name }}</h1>
         <h1 class="text-left pl-4 py-2 font-semibold text-[16px] border-b-2 border-white">Daftar Pelajaran</h1>
         @foreach($lessons as $lsn)
@@ -60,13 +60,9 @@
 
 
     @if($current_lessons != null)
-    <div class="w-full h-full pt-6 px-8">
+    <div class="w-full h-full pt-6 px-8 mb-[60px]">
         <h1 class="text-center font-extrabold text-[20px]">
-            @if ($current_lessons != null)
-                {{ $current_lessons -> lesson_title }}
-            @else
-                Judul Pelajaran
-            @endif
+            {{ $current_lessons -> lesson_title }}
         </h1>
         <p class="text-justify mt-4">
             @if ($current_lessons != null)
@@ -78,7 +74,7 @@
 
        
         @if ($current_lessons->file_content_url != null)
-        <iframe class="mt-[1rem]" src="{{ url($current_lessons->file_content_url) }}" style="width:100%; height:600px;" frameborder="0"></iframe>
+        <iframe class="mt-[1rem]" src="{{ url($current_lessons->file_content_url) }}" style="width:100%; height:800px;" frameborder="0"></iframe>
         @else
                 <h1>File belum di upload</h1>
         @endif
@@ -96,9 +92,9 @@
     </div>
     
 @else
-<h1 class=" text-[30px] text-center ml-5">
-    Lesson Kosong
-</h1>
+    <h1 class="font-extrabold text-[20px] pt-6 px-8 text-center w-full">
+        Pelajaran Kosong
+    </h1>
 @endif
 </div>
 

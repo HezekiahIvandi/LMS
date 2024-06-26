@@ -13,7 +13,7 @@ class CourseController extends Controller
 {
     public function index() 
     {
-        $course = Course::all();
+        $course = Course::orderByDesc('created_at')->get();
 
         return view('course.index', compact('course'));
     }
@@ -146,7 +146,7 @@ class CourseController extends Controller
             'lesson_id' => 'required',
             'lesson_title' => 'required',
             'text_content' => 'required',
-            'file_content_url' => ['nullable', 'mimes:pdf,ppt,pptx,doc,docx'],
+            'file_content_url' => ['nullable', 'mimes:pdf'],
             'video_content_url' => ['nullable', 'mimes:mp4'],
         ]);
 
@@ -159,18 +159,12 @@ class CourseController extends Controller
             $filePath = $request->file('file_content_url')->store('LessonFiles','public');
             $filePath = 'storage/'.$filePath;
             $updateData['file_content_url'] = $filePath;
-            if($lesson->file_content_url != null){
-                Storage::disk('public')->delete($lesson->file_content_url);
-            }
         }
 
         if( $request->hasFile('video_content_url') ) {
             $filePathVid = $request->file('video_content_url')->store('LessonVideo','public');
             $filePathVid = 'storage/'.$filePathVid;
             $updateData['video_content_url'] = $filePathVid;
-            if($lesson->video_content_url != null){
-                Storage::disk('public')->delete($lesson->video_content_url);
-            }
         }
 
         Lessons::whereId($request->lesson_id)->update($updateData);
