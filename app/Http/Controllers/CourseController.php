@@ -123,12 +123,12 @@ class CourseController extends Controller
             'lesson_title' => 'required',
         ]);
         
-        $lessons = new Lessons;
-        $lessons->course_id = $id;
-        $lessons->lesson_title = $request->lesson_title;
-        $lessons->save();
+        $lesson = new Lessons;
+        $lesson->course_id = $id;
+        $lesson->lesson_title = $request->lesson_title;
+        $lesson->save();
         
-        return redirect()->route('course.content', $id);
+        return redirect()->route('course.contentselect', ['id' => $id, 'current' => $lesson->id]);
     }
 
     // Memilih lesson tertentu untuk ditampilkan dalam konten course.
@@ -142,21 +142,19 @@ class CourseController extends Controller
     }
 
     // Menghapus lesson dari suatu course.
-    public function contentDestroy($id, $lesson) 
+    public function contentDestroy($id) 
     {
-        $lesson = Lessons::find($lesson);
+        $lesson = Lessons::find($id);
         $lesson->delete();
-        return redirect()->route('course.content', $id);
+        return redirect()->route('course.content', $lesson->course_id);
     }
 
     // Memperbarui konten dari suatu lesson dalam suatu course.
     public function contentUpdate(Request $request, $id) 
     {
-        $lesson = Lessons::find($id);
-
         $request->validate([
             'lesson_title' => 'required',
-            'text_content' => 'required',
+            'text_content' => 'nullable',
             'file_content_url' => ['nullable', 'mimes:pdf'],
             'video_content_url' => ['nullable', 'mimes:mp4'],
         ]);
@@ -178,8 +176,29 @@ class CourseController extends Controller
             $updateData['video_content_url'] = $filePathVid;
         }
 
-        Lessons::whereId($id)->update($updateData);
+        Lessons::find($request->lesson_id)->update($updateData);
 
-        return redirect()->route('course.content', $lesson->course_id);
+        return redirect()->route('course.contentselect', ['id' => $id, 'current' => $request->lesson_id]);
+    }
+
+    public function deleteText($id) {
+        $lesson = Lessons::find($id);
+        $lesson->text_content = null;
+        $lesson->save(); 
+        return redirect()->route('course.contentselect', ['id' => $lesson->course_id, 'current' => $id]);
+    }
+
+    public function deleteFile($id) {
+        $lesson = Lessons::find($id);
+        $lesson->file_content_url = null;
+        $lesson->save(); 
+        return redirect()->route('course.contentselect', ['id' => $lesson->course_id, 'current' => $id]);
+    }
+
+    public function deleteVideo($id) {
+        $lesson = Lessons::find($id);
+        $lesson->video_content_url = null;
+        $lesson->save(); 
+        return redirect()->route('course.contentselect', ['id' => $lesson->course_id, 'current' => $id]);
     }
 }

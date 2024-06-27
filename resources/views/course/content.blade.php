@@ -32,7 +32,7 @@
             <label for="edit-lsn-video" class="text-left pb-[10px]">Video:</label>
             <input class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px]" type="file" id="edit-lsn-video" name="video_content_url" placeholder="Pilih file">
             <label for="edit-lsn-text" class="text-left pb-[10px]">Konten teks:</label>
-            <textarea class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px] max-h-[10rem]" id="edit-lsn-text" name="text_content" placeholder="@isset($current_lessons){{ $current_lessons->text_content }}@endisset" required>@isset($current_lessons){{ $current_lessons->text_content }}@endisset</textarea>
+            <textarea class="mb-[25px] p-[10px] border-[1px] border-[#ccc] rounded text-[16px] max-h-[10rem]" id="edit-lsn-text" name="text_content" placeholder="@isset($current_lessons){{ $current_lessons->text_content }}@endisset">@isset($current_lessons){{ $current_lessons->text_content }}@endisset</textarea>
             <button class="mb-[25px] p-[10px] rounded text-[16px] text-white bg-[#006699] hover:bg-[#004466] ease transition cursor-pointer" type="submit">Simpan</button>
         </form>
     </div>
@@ -40,7 +40,7 @@
 
 <!-- Konten utama halaman kursus -->
 <div id="course-content" class="min-h-[80vh] pt-[100px] flex">
-    <div class="bg-gradient-to-r from-[#046494] to-[#339966] w-[300px] text-white">
+    <div class="bg-gradient-to-r from-[#046494] to-[#339966] sm:w-[40vw] lg:w-[25vw] text-white">
         <h1 class="text-center py-4 font-bold text-[18px] border-b-2 border-white">{{ $course->name }}</h1>
         <h1 class="text-left pl-4 py-2 font-semibold text-[16px] border-b-2 border-white">Daftar Pelajaran</h1>
         @foreach($lessons as $lsn)
@@ -48,7 +48,7 @@
                 <a href="{{ route('course.contentselect', ['id' => $course->id, 'current' => $lsn->id]) }}" class="w-full"><button>{{ $lsn->lesson_title }}</button></a>
                 <div class="flex">
                     <button class="mr-2 text-[18px]" onclick="editLesson('{{ $lsn->id }}', '{{ $lsn->lesson_title }}')"><i class="fa fa-pen-to-square"></i></button>
-                    <form action="{{ route('course.contentdestroy', ['id' => $course->id, 'lesson' => $lsn->id]) }}" method="post" onsubmit="return confirm('Anda yakin ingin menghapus pelajaran ini?');">
+                    <form action="{{ route('course.contentdestroy', $lsn->id) }}" method="post" onsubmit="return confirm('Anda yakin ingin menghapus pelajaran ini?');">
                         @method('delete')
                         @csrf
                         <button type="submit" class="mr-2 text-[18px]"><i class="fa fa-trash-can"></i></button>
@@ -64,32 +64,43 @@
         <h1 class="text-center font-extrabold text-[20px]">
             {{ $current_lessons->lesson_title }}
         </h1>
-        <p class="text-justify mt-4">
-            @if ($current_lessons != null)
+        <p class="text-justify ">
+            @if ($current_lessons->text_content != null)
+                <form action="{{ route('course.contentdeletetext', $current_lessons->id) }}" class="text-right mt-4 mb-2" method="post">
+                @method('put')
+                @csrf
+                    <button type="submit" class="text-[18px] text-red-600"><i class="fa fa-trash-can"></i></button>
+                </form>
+                
                 {{ $current_lessons->text_content }}
-            @else
-                Teks konten
             @endif
         </p>
 
-        <!-- Menampilkan file jika ada -->
-        @if ($current_lessons->file_content_url != null)
-        <iframe class="mt-[1rem]" src="{{ url($current_lessons->file_content_url) }}" style="width:100%; height:800px;" frameborder="0"></iframe>
-        @else
-                <h1>File belum di upload</h1>
-        @endif
-
         <!-- Menampilkan video jika ada -->
         @if ($current_lessons->video_content_url != null)
-        <div class="mt-[1rem] flex w-full">
+        <form action="{{ route('course.contentdeletevideo', $current_lessons->id) }}" class="text-right mt-[1rem] mb-2" method="post">
+        @method('put')
+        @csrf
+            <button type="submit" class="text-[18px] text-red-600"><i class="fa fa-trash-can"></i></button>
+        </form>
+        <div class="w-full">
             <video controls>
                 <source src="{{ url($current_lessons->video_content_url) }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
-        @else
-                <h1>Video belum di upload</h1>
         @endif
+
+        <!-- Menampilkan file jika ada -->
+        @if ($current_lessons->file_content_url != null)
+        <form action="{{ route('course.contentdeletefile', $current_lessons->id) }}" class="text-right mt-[1rem] mb-2" method="post">
+        @method('put')
+        @csrf
+            <button type="submit" class="text-[18px] text-red-600"><i class="fa fa-trash-can"></i></button>
+        </form>
+        <iframe class="" src="{{ url($current_lessons->file_content_url) }}" style="width:100%; height:800px;" frameborder="0"></iframe>
+        @endif
+        
     </div>
     
     @else
