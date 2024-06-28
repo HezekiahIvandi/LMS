@@ -40,6 +40,18 @@ Generate data dummy:
 Koneksi ke storage:
 `php artisan storage:link`
 
+### Konfigurasi database
+Edit nama file `.env.example` menjadi `.env`
+Pastikan konfigurasi database sesuai:
+```
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=mydb
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+```
+
 ### Penggunaan
 Jalankan server lokal:
 `php artisan serve`
